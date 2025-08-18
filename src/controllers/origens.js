@@ -1,4 +1,4 @@
-const { execSqlQuery } = require("../db/connection");
+const { execSqlQuery } = require("../database/connection");
 
 async function getOrigens(req, res) {
   const results = await execSqlQuery("SELECT * FROM ORIGENS");
