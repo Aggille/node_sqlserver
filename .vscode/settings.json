@@ -1,0 +1,9 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
+  "editor.fontFamily": "monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22
+}
