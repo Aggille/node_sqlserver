@@ -12,6 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@sequelize/mssql": "^7.0.0-alpha.46",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "init": "^0.1.2",

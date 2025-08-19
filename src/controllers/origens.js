@@ -2,6 +2,7 @@ const { execSqlQuery } = require("../database/connection");
 
 async function getOrigens(req, res) {
   const results = await execSqlQuery("SELECT * FROM ORIGENS");
+  console.log(results);
   if (results.result.length === 0) {
     return res.status(404).json({ error: "Nenhuma origem encontrada" });
   } else {
@@ -16,7 +17,6 @@ async function getOrigemById(req, res) {
   if (results.result.length === 0) {
     return res.status(404).json({ error: "Origem não encontrada" });
   }
-
   res.status(200).json(results.result[0]);
 }
 

@@ -1,3 +1,4 @@
+require("./src/database/index.js");
 const express = require("express");
 const routes = require("./src/routes/routes");
 

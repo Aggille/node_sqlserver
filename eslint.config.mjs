@@ -7,7 +7,8 @@ export default defineConfig([
     rules: {
       "no-param-reassign": "off",
       camelcase: "off",
-      "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
+      "no-unused-vars": "off",
+      //"no-unused-vars": ["error", { argsIgnorePattern: "next" }],
       "max-len": ["error", { code: 80 }],
     },
   },
