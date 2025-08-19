@@ -1,5 +1,5 @@
 require("dotenv").config();
-console.log("DB: ", process.env.DB_DATABASE);
+console.log("Conectando a: ", process.env.DB_DATABASE);
 module.exports = {
   dialect: process.env.DB_DIALECT,
   host: process.env.DB_SERVER,
