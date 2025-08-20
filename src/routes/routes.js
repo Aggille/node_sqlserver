@@ -2,15 +2,27 @@ const express = require("express");
 const routesOrigens = require("./origens");
 const routesUsers = require("./users");
 const routes = express.Router();
-routes.use(routesOrigens);
-routes.use(routesUsers);
+const Auth = require("../controllers/authentication");
+const authSchema = require("../database/schemas/auth.schema.json");
+const schemaValidator = require("../middlewares/schemaValidator");
+const authentication = require("../middlewares/authentication");
 
-routes.get("/health", (req, res) => {
-  res.status(200).json({ status: "UP" });
-});
+routes.use(routesOrigens);
 
 routes.get("/", (req, res) => {
   res.status(200).json("API is running");
+});
+
+routes.post("/auth", schemaValidator(authSchema), (req, res) => {
+  Auth.authenticate(req, res);
+});
+
+// tudo abaixo daqui tem que estar autenticado
+routes.use(authentication);
+
+routes.use(routesUsers);
+routes.get("/health", (req, res) => {
+  res.status(200).json({ status: "UP" });
 });
 
 module.exports = routes;
