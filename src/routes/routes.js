@@ -8,6 +8,7 @@ const Auth = require("../controllers/authentication");
 const authSchema = require("../database/schemas/auth.schema.json");
 const schemaValidator = require("../middlewares/schemaValidator");
 const authentication = require("../middlewares/authentication");
+const routesNotificaEventos = require("./notificaeventos");
 
 routes.use(routesOrigens);
 
@@ -19,11 +20,13 @@ routes.post("/auth", schemaValidator(authSchema), (req, res) => {
   Auth.authenticate(req, res);
 });
 
-routes.use(routesPedidosDto);
-routes.use(routesPedidos);
+routes.use(routesNotificaEventos);
 
 // tudo abaixo daqui tem que estar autenticado
 routes.use(authentication);
+
+routes.use(routesPedidosDto);
+routes.use(routesPedidos);
 
 routes.use(routesUsers);
 routes.get("/health", (req, res) => {
