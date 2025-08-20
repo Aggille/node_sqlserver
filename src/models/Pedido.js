@@ -1,0 +1,89 @@
+const { Sequelize, DataTypes } = require("sequelize");
+const { Model } = require("sequelize");
+
+class Pedido extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
+        idcliente: { type: DataTypes.INTEGER, allowNull: false },
+        idponto: { type: DataTypes.INTEGER, allowNull: false },
+        idcertificado: { type: DataTypes.INTEGER, allowNull: false },
+        idmidia: { type: DataTypes.INTEGER, allowNull: false },
+        validade: { type: DataTypes.DATE, allowNull: false },
+        idorigem: { type: DataTypes.INTEGER, allowNull: false },
+        valormidia: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
+        valorcertificado: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
+        valortotal: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
+        emissao: { type: DataTypes.DATE, allowNull: true },
+        pagacomissaoparceiro: { type: DataTypes.BOOLEAN, allowNull: false },
+        pedidoorigem: { type: DataTypes.STRING(20), allowNull: false },
+        pedidorenovacao: { type: DataTypes.STRING(20), allowNull: true },
+        idparceiro: { type: DataTypes.INTEGER, allowNull: false },
+        dataenvioaviso: { type: DataTypes.DATE, allowNull: true },
+        idagentevalidacao: { type: DataTypes.INTEGER, allowNull: false },
+        idagenteverificacao: { type: DataTypes.INTEGER, allowNull: false },
+        datapgtocomissao: { type: DataTypes.DATE, allowNull: true },
+        precocompra: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
+        despesas: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
+        observacoes: { type: DataTypes.STRING(500), allowNull: true },
+        datarenovacao: { type: DataTypes.DATE, allowNull: true },
+        horainicialvalidade: { type: DataTypes.TIME, allowNull: true },
+        horafinalvalidade: { type: DataTypes.TIME, allowNull: true },
+        status: { type: DataTypes.INTEGER, allowNull: false },
+        datarevogacao: { type: DataTypes.DATE, allowNull: true },
+        numeroserie: { type: DataTypes.STRING, allowNull: true },
+        idcertificadoar: { type: DataTypes.INTEGER, allowNull: true },
+        nomeaci: { type: DataTypes.STRING, allowNull: true },
+        cpfaci: { type: DataTypes.STRING(20), allowNull: true },
+        nomerevogado: { type: DataTypes.STRING, allowNull: true },
+        validacaoexterna: { type: DataTypes.BOOLEAN, allowNull: true },
+        enderecovalidacaoexterna: { type: DataTypes.STRING, allowNull: true },
+        datarevisaoatendimento: { type: DataTypes.DATE, allowNull: true },
+        idusuariorevisaoatendimento: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+        },
+        idtipopagamento: { type: DataTypes.INTEGER, allowNull: true },
+        numerocartao: { type: DataTypes.STRING, allowNull: true },
+        termos: { type: DataTypes.BOOLEAN, allowNull: true },
+        notaemitida: { type: DataTypes.BOOLEAN, allowNull: true },
+        cadastros: { type: DataTypes.BOOLEAN, allowNull: true },
+        valorpago: { type: DataTypes.DECIMAL(18, 2), allowNull: true },
+        renovacaoprogramada: { type: DataTypes.BOOLEAN, allowNull: true },
+        codigovoucher: { type: DataTypes.STRING, allowNull: true },
+        comissaopaga: { type: DataTypes.DECIMAL(18, 2), allowNull: true },
+        codigorevogacao: { type: DataTypes.INTEGER, allowNull: true },
+        descricaorevogacao: { type: DataTypes.STRING, allowNull: true },
+        dataliberacaofaturamento: { type: DataTypes.DATE, allowNull: true },
+        idusuarioliberacaofaturamento: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+        },
+        liberadofaturamento: { type: DataTypes.BOOLEAN, allowNull: true },
+        idnf: { type: DataTypes.INTEGER, allowNull: false },
+        idtipoemissao: { type: DataTypes.INTEGER, allowNull: true },
+        antecipacao: { type: DataTypes.DECIMAL, allowNull: true },
+        qtdeparcelascartao: { type: DataTypes.INTEGER, allowNull: true },
+        urlhope: { type: DataTypes.STRING, allowNull: true },
+        semverificacaoaci: { type: DataTypes.BOOLEAN, allowNull: true },
+        biometria: { type: DataTypes.BOOLEAN, allowNull: true },
+        psbiolocal: { type: DataTypes.BOOLEAN, allowNull: true },
+        psbioglobal: { type: DataTypes.BOOLEAN, allowNull: true },
+        oc: { type: DataTypes.STRING, allowNull: true },
+        dataoc: { type: DataTypes.DATE, allowNull: true },
+        tipoultimoaviso: { type: DataTypes.INTEGER, allowNull: true },
+      },
+      {
+        createdAt: false,
+        // don't generate an "updatedAt" attribute
+        updatedAt: false,
+        sequelize,
+        tableName: "PEDIDOS",
+      }
+    );
+    return this;
+  }
+}
+
+module.exports = Pedido;
