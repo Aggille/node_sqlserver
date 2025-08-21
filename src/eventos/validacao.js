@@ -1,5 +1,4 @@
 async function validacao(req, res) {
-  console.log(req.body);
   const {
     protocolo,
     evento,

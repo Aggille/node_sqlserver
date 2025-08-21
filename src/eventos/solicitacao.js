@@ -1,5 +1,4 @@
 async function solicitacao(req, res) {
-  console.log(req.body);
   const {
     protocolo,
     evento,
