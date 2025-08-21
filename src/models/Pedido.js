@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const { Model } = require("sequelize");
 
 class Pedido extends Model {
@@ -10,7 +10,7 @@ class Pedido extends Model {
         idponto: { type: DataTypes.INTEGER, allowNull: false },
         idcertificado: { type: DataTypes.INTEGER, allowNull: false },
         idmidia: { type: DataTypes.INTEGER, allowNull: false },
-        validade: { type: DataTypes.DATE, allowNull: false },
+        validade: { type: DataTypes.TIME, allowNull: false },
         idorigem: { type: DataTypes.INTEGER, allowNull: false },
         valormidia: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
         valorcertificado: { type: DataTypes.DECIMAL(18, 2), allowNull: false },

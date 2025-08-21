@@ -1,5 +1,6 @@
 const express = require("express");
 const routesNotificaEventos = express.Router();
+const eventosMiddleware = require("../middlewares/eventosMiddleware");
 const {
   emissao,
   solicitacao,
@@ -7,9 +8,17 @@ const {
   verificacao,
 } = require("../controllers/notificaeventos");
 
-routesNotificaEventos.post("/notificaEmissao", emissao);
-routesNotificaEventos.post("/notificaSolicitacao", solicitacao);
-routesNotificaEventos.post("/notificaValidacao", validacao);
-routesNotificaEventos.post("/notificaVerificacao", verificacao);
+routesNotificaEventos.post("/notificaEmissao", eventosMiddleware, emissao);
+routesNotificaEventos.post(
+  "/notificaSolicitacao",
+  eventosMiddleware,
+  solicitacao
+);
+routesNotificaEventos.post("/notificaValidacao", eventosMiddleware, validacao);
+routesNotificaEventos.post(
+  "/notificaVerificacao",
+  eventosMiddleware,
+  verificacao
+);
 
 module.exports = routesNotificaEventos;
