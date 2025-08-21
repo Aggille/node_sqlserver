@@ -5,6 +5,13 @@ const { verificacao } = require("../eventos/verificacao");
 const { cancelamento } = require("../eventos/cancelamento");
 const { revogacao } = require("../eventos/revogacao");
 const { pagamento } = require("../eventos/pagamento");
+const { confirmacaoCadastro } = require("../eventos/confirmacaoCadastro");
+const { solicitacaoPeriodoUso } = require("../eventos/solicitacaoPeriodoUso");
+const { certificadoPeriodoUso } = require("../eventos/certificadoPeriodoUso");
+const { validacaoAutonoma } = require("../eventos/validacaoAutonoma");
+const {
+  cancelamentoSolicitacao,
+} = require("../eventos/cancelamentoSolicitacao");
 
 const eventosMiddleware = async (req, res) => {
   console.log(req.body);
@@ -36,21 +43,21 @@ const eventosMiddleware = async (req, res) => {
     case "revogacao":
       await revogacao(req, res);
       break;
-    // case "Confirmação de Cadastro":
-    //   await confirmacaoCadastro(req, res);
-    //   break;
-    // case "Solicitação Período Uso":
-    //   await solicitacaoPeriodoUso(req, res);
-    //   break;
-    // case "Certificado Período Uso":
-    //   await certificadoPeriodoUso(req, res);
-    //   break;
-    // case "Validação Autônoma":
-    //   await validacaoAutonoma(req, res);
-    //   break;
-    // case "Cancelamento de Solicitação":
-    //   await cancelamentoSolicitacao(req, res);
-    //   break;
+    case "Confirmação de Cadastro":
+      await confirmacaoCadastro(req, res);
+      break;
+    case "Solicitação Período Uso":
+      await solicitacaoPeriodoUso(req, res);
+      break;
+    case "Certificado Período Uso":
+      await certificadoPeriodoUso(req, res);
+      break;
+    case "Validação Autônoma":
+      await validacaoAutonoma(req, res);
+      break;
+    case "Cancelamento De Solicitação":
+      await cancelamentoSolicitacao(req, res);
+      break;
     default:
       return res.status(400).json({ error: "Tipo de evento desconhecido" });
   }
