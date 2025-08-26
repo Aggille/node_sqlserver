@@ -1,3 +1,5 @@
+const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
+
 async function pagamento(req, res) {
   const {
     formaPagamento,

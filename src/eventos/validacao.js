@@ -4,7 +4,7 @@ async function validacao(req, res) {
     evento,
     dtHoraEvento,
     responsavelEvento,
-    validadeExterna,
+    validacaoExterna,
     localAtendimento,
     dtLimiteVerificacao,
     nomeAutoridadeRegistro,
@@ -14,6 +14,11 @@ async function validacao(req, res) {
     apelidoPosto,
     tipoEmissao,
   } = req.body;
+
+  // pesquisa certificado
+  // responvaleEvento nome:cpf - pesquisar o cpf -= jogar em Agende de Validação
+  // marcar validação externa :validadeExterna
+  // criar campo data de validação com a data do evento
 
   return res.status(200).json({ message: "Validação notificada com sucesso" });
 }

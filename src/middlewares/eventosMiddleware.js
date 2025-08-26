@@ -14,7 +14,6 @@ const {
 } = require("../eventos/cancelamentoSolicitacao");
 
 const eventosMiddleware = async (req, res) => {
-  console.log(req.body);
   console.log("Middleware de eventos acionado", req.body);
   const { evento } = req.body;
   console.log("Processando evento:", evento);

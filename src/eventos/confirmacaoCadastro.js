@@ -12,6 +12,9 @@ async function confirmacaoCadastro(req, res) {
     descricao,
   } = req.body;
 
+  // CRIAR UM CAMPO DATA DE CONFIRMAAÇÃO
+  // E ATUALIZAR NESSE EVENTO
+
   return res
     .status(200)
     .json({ message: "Confirmação de cadastro realizada com sucesso" });
