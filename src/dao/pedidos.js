@@ -1,9 +1,13 @@
 const PedidosModel = require("../models/Pedido");
 
 async function PedidoByProtocolo(protocolo) {
-  return await PedidosModel.findOne({
+  console.log("Buscando pedido pelo protocolo:", protocolo);
+
+  const retorno = await PedidosModel.findOne({
     where: { pedidoorigem: protocolo },
   });
+
+  return retorno;
 }
 
 async function PedidoById(id) {

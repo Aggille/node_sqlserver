@@ -57,7 +57,7 @@ async function solicitacao(req, res) {
 
   const pedido = await PedidoByProtocolo(protocolo);
   if (!pedido) {
-    return { status: 404, message: "Pedido não encontrado" };
+    return res.status(404).json({ message: "Pedido não encontrado" });
   }
 
   pedido.datasolicitacao = new Date();

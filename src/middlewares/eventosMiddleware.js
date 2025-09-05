@@ -30,7 +30,7 @@ const eventosMiddleware = async (req, res) => {
     case "Solicitação":
       await solicitacao(req, res);
       break;
-    case "validacao":
+    case ("validacao", "Validação"):
       await validacao(req, res);
       break;
     case "verificacao":

@@ -16,7 +16,7 @@ async function emissao(req, res) {
 
   const pedido = await PedidoByProtocolo(protocolo);
   if (!pedido) {
-    return { status: 404, message: "Pedido não encontrado" };
+    return res.status(404).json({ message: "Pedido não encontrado" });
   }
   const validade = fimValidade;
   const horaInicial = inicioValidade.substring(11, 19);
