@@ -1,3 +1,6 @@
+const Evento = require("../models/Evento");
+const { InsertEvento } = require("../dao/eventos");
+
 async function confirmacaoCadastro(req, res) {
   const {
     evento,
@@ -11,6 +14,17 @@ async function confirmacaoCadastro(req, res) {
     comVerificacao,
     descricao,
   } = req.body;
+
+  const eventoModel = new Evento({
+    idpedido: 0,
+    protocolo: protocolo,
+    dataevento: new Date(),
+    horaevento: new Date().toTimeString().substring(0, 8),
+    evento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
+
+  await InsertEvento(eventoModel);
 
   // CRIAR UM CAMPO DATA DE CONFIRMAAÇÃO
   // E ATUALIZAR NESSE EVENTO
