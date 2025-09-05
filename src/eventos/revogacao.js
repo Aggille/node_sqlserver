@@ -1,5 +1,7 @@
 const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
 const { format } = require("date-fns");
+const Evento = require("../models/Evento");
+const { InsertEvento } = require("../dao/eventos");
 
 async function revogacao(req, res) {
   const { protocolo, evento, dtHoraEvento, responsavelEvento } = req.body;
@@ -20,6 +22,20 @@ async function revogacao(req, res) {
   pedido.observacoes = obs;
   pedido.status = 3; // revogado
   await UpdatePedido(pedido);
+
+  const horaEvento = dtHoraEvento.substring(11, 19);
+  const eventoModel = new Evento({
+    idpedido: pedido.id,
+    tipoevento: evento,
+    protocolo: protocolo,
+    dataevento: dtHoraEvento.substring(0, 10),
+    horaevento: horaEvento,
+    evento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
+
+  await InsertEvento(eventoModel);
+
   return res.status(200).json({ message: "Revogação notificada com sucesso" });
 }
 

@@ -1,3 +1,6 @@
+const Evento = require("../models/Evento");
+const { InsertEvento } = require("../dao/eventos");
+
 async function solicitacao(req, res) {
   const {
     protocolo,
@@ -51,6 +54,18 @@ async function solicitacao(req, res) {
     dtHoraEvento,
   } = req.body;
 
+  const horaEvento = dtHoraEvento.substring(11, 19);
+  const eventoModel = new Evento({
+    idpedido: pedido.id,
+    tipoevento: evento,
+    protocolo: protocolo,
+    dataevento: dtHoraEvento.substring(0, 10),
+    horaevento: horaEvento,
+    evento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
+
+  await InsertEvento(eventoModel);
   return res
     .status(200)
     .json({ message: "Solicitação notificada com sucesso" });

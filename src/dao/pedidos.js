@@ -11,9 +11,6 @@ async function PedidoById(id) {
 }
 
 async function UpdatePedido(pedido) {
-  const oldPed = await PedidoById(pedido.id);
-
-  //await oldPed.update(pedido);
   await pedido.save();
   console.log("Pedido atualizado com sucesso ", pedido.numeroserie, pedido.id);
 }

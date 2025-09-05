@@ -5,7 +5,12 @@ class Pedido extends Model {
   static init(sequelize) {
     super.init(
       {
-        id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
+        id: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          primaryKey: true,
+          autoIncrement: true,
+        },
         idcliente: { type: DataTypes.INTEGER, allowNull: false },
         idponto: { type: DataTypes.INTEGER, allowNull: false },
         idcertificado: { type: DataTypes.INTEGER, allowNull: false },

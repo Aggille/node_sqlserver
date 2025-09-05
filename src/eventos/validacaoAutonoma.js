@@ -1,6 +1,9 @@
+const Evento = require("../models/Evento");
+const { InsertEvento } = require("../dao/eventos");
+
 async function validacaoAutonoma(req, res) {
   const {
-   protocolo,
+    protocolo,
     evento,
     dtHoraEvento,
     dtLimiteVerificacao,
@@ -19,8 +22,20 @@ async function validacaoAutonoma(req, res) {
     telefone,
     validacaoExterna,
     comVerificacao,
-
   } = req.body;
+
+  const horaEvento = dtHoraEvento.substring(11, 19);
+  const eventoModel = new Evento({
+    idpedido: pedido.id,
+    tipoevento: evento,
+    protocolo: protocolo,
+    dataevento: dtHoraEvento.substring(0, 10),
+    horaevento: horaEvento,
+    evento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
+
+  await InsertEvento(eventoModel);
 
   return res
     .status(200)
