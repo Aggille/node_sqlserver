@@ -31,7 +31,6 @@ async function emissao(req, res) {
   pedido.horafinalvalidade = horaFinal;
   pedido.numeroserie = numeroSerie;
   pedido.status = 2;
-  pedido.observacoes = obs;
   await UpdatePedido(pedido);
 
   const horaEvento = dtHoraEvento.substring(11, 19);
