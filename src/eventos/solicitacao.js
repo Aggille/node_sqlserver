@@ -1,5 +1,6 @@
 const Evento = require("../models/Evento");
 const { InsertEvento } = require("../dao/eventos");
+const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
 
 async function solicitacao(req, res) {
   const {
@@ -53,6 +54,14 @@ async function solicitacao(req, res) {
     produtoDescricao,
     dtHoraEvento,
   } = req.body;
+
+  const pedido = await PedidoByProtocolo(protocolo);
+  if (!pedido) {
+    return { status: 404, message: "Pedido não encontrado" };
+  }
+
+  pedido.datasolicitacao = new Date();
+  await UpdatePedido(pedido);
 
   const horaEvento = dtHoraEvento.substring(11, 19);
   const eventoModel = new Evento({

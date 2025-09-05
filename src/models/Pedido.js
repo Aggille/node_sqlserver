@@ -39,6 +39,7 @@ class Pedido extends Model {
         numeroseriea3responsavel: { type: DataTypes.STRING, allowNull: true },
         datasolicitacao: { type: DataTypes.DATE, allowNull: true },
         dataverificacao: { type: DataTypes.DATE, allowNull: true },
+        datavalidacao: { type: DataTypes.DATE, allowNull: true },
         datacancelamento: { type: DataTypes.DATE, allowNull: true },
         formapagamento: { type: DataTypes.STRING, allowNull: true },
         statuspagamento: { type: DataTypes.STRING, allowNull: true },

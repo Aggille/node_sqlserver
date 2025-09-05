@@ -1,5 +1,6 @@
 const Evento = require("../models/Evento");
 const { InsertEvento } = require("../dao/eventos");
+const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
 
 async function validacaoAutonoma(req, res) {
   const {
@@ -23,6 +24,15 @@ async function validacaoAutonoma(req, res) {
     validacaoExterna,
     comVerificacao,
   } = req.body;
+
+  const pedido = await PedidoByProtocolo(protocolo);
+
+  if (!pedido) {
+    return { status: 404, message: "Pedido não encontrado" };
+  }
+
+  pedido.datavalidacao = dtHoraEvento;
+  await UpdatePedido(pedido);
 
   const horaEvento = dtHoraEvento.substring(11, 19);
   const eventoModel = new Evento({

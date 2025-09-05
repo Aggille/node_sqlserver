@@ -13,6 +13,7 @@ async function emissao(req, res) {
     dtHoraEvento,
     evento,
   } = req.body;
+
   const pedido = await PedidoByProtocolo(protocolo);
   if (!pedido) {
     return { status: 404, message: "Pedido não encontrado" };
