@@ -24,7 +24,7 @@ const eventosMiddleware = async (req, res) => {
   }
 
   switch (evento) {
-    case "emissao":
+    case ("emissao", "Emissão"):
       await emissao(req, res);
       break;
     case "Solicitação":
@@ -33,13 +33,13 @@ const eventosMiddleware = async (req, res) => {
     case ("validacao", "Validação"):
       await validacao(req, res);
       break;
-    case "verificacao":
+    case ("verificacao", "Verificação"):
       await verificacao(req, res);
       break;
     case "Cancelamento":
       await cancelamento(req, res);
       break;
-    case "revogacao":
+    case ("revogacao", "Revogação"):
       await revogacao(req, res);
       break;
     case "Confirmação de Cadastro":
