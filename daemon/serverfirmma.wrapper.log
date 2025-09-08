@@ -1,0 +1,16 @@
+2025-09-08 13:57:18 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\aggil\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file E:\Aggille\Sistemas\Node\sqlserver\index.js --scriptoptions= --log "Server Firmma wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2025-09-08 13:57:18 - Started 30856
+2025-09-08 13:57:51 - Stopping serverfirmma.exe
+2025-09-08 13:57:51 - ProcessKill 30856
+2025-09-08 13:57:51 - Found child process: 20272 Name: conhost.exe
+2025-09-08 13:57:51 - Found child process: 10568 Name: node.exe
+2025-09-08 13:57:51 - Stopping process 20272
+2025-09-08 13:57:52 - Send SIGINT 20272
+2025-09-08 13:57:52 - SIGINT to 20272 failed - Killing as fallback
+2025-09-08 13:57:52 - Stopping process 10568
+2025-09-08 13:57:52 - Send SIGINT 10568
+2025-09-08 13:57:52 - SIGINT to 10568 failed - Killing as fallback
+2025-09-08 13:57:52 - Stopping process 30856
+2025-09-08 13:57:52 - Send SIGINT 30856
+2025-09-08 13:57:52 - SIGINT to 30856 failed - Killing as fallback
+2025-09-08 13:57:52 - Finished serverfirmma.exe

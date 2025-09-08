@@ -5,7 +5,7 @@ var Service = require("node-windows").Service;
 var svc = new Service({
   name: "Server Firmma",
   description: "Servidor de emissão de certificados digitais Firmma.",
-  script: process.env.PATH_CERTIFICADOS + "/src/index.js",
+  script: process.env.PATH_CERTIFICADOS + "/index.js",
 });
 
 // Listen for the "install" event, which indicates the
