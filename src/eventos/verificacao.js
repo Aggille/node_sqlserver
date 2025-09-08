@@ -1,3 +1,4 @@
+const Evento = require("../models/Evento");
 const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
 const { format } = require("date-fns");
 async function verificacao(req, res) {

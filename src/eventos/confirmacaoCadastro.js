@@ -1,3 +1,4 @@
+const { PedidoByProtocolo } = require("../dao/pedidos");
 const Evento = require("../models/Evento");
 const { InsertEvento } = require("../dao/eventos");
 
@@ -14,6 +15,11 @@ async function confirmacaoCadastro(req, res) {
     comVerificacao,
     descricao,
   } = req.body;
+
+  const pedido = await PedidoByProtocolo(protocolo);
+  if (!pedido) {
+    return res.status(404).json({ message: "Pedido não encontrado" });
+  }
 
   const eventoModel = new Evento({
     idpedido: 0,

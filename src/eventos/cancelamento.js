@@ -7,21 +7,9 @@ async function cancelamento(req, res) {
   const { protocolo, evento, dtHoraEvento } = req.body;
 
   const pedido = await PedidoByProtocolo(protocolo);
-
   if (!pedido) {
-    return { status: 404, message: "Pedido não encontrado" };
+    return res.status(404).json({ message: "Pedido não encontrado" });
   }
-
-  const obs = `Cancelamento notificado em ${format(
-    new Date(),
-    "dd/MM/yyyy"
-  )} via API\n${pedido.observacoes ?? ""}`;
-
-  const dataCancelamento = dtHoraEvento;
-  pedido.datacancelamento = dataCancelamento;
-  pedido.observacoes = obs;
-  pedido.status = 6; // cancelado
-  await UpdatePedido(pedido);
 
   const horaEvento = dtHoraEvento.substring(11, 19);
 
