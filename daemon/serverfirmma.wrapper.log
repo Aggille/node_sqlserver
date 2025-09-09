@@ -16,3 +16,17 @@
 2025-09-08 13:57:52 - Finished serverfirmma.exe
 2025-09-09 07:12:22 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\aggil\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file E:\Aggille\Sistemas\Node\sqlserver\index.js --scriptoptions= --log "Server Firmma wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
 2025-09-09 07:12:22 - Started 9384
+2025-09-09 09:31:37 - Stopping serverfirmma.exe
+2025-09-09 09:31:37 - ProcessKill 9384
+2025-09-09 09:31:37 - Found child process: 9404 Name: conhost.exe
+2025-09-09 09:31:37 - Found child process: 10112 Name: node.exe
+2025-09-09 09:31:37 - Stopping process 9404
+2025-09-09 09:31:37 - Send SIGINT 9404
+2025-09-09 09:31:37 - SIGINT to 9404 failed - Killing as fallback
+2025-09-09 09:31:37 - Stopping process 10112
+2025-09-09 09:31:37 - Send SIGINT 10112
+2025-09-09 09:31:37 - SIGINT to 10112 failed - Killing as fallback
+2025-09-09 09:31:37 - Stopping process 9384
+2025-09-09 09:31:37 - Send SIGINT 9384
+2025-09-09 09:31:37 - SIGINT to 9384 failed - Killing as fallback
+2025-09-09 09:31:37 - Finished serverfirmma.exe

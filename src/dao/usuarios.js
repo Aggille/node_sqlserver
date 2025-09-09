@@ -23,4 +23,5 @@ module.exports = {
   UsuarioById,
   UpdateUsuario,
   InsertUsuario,
+  UsuarioByCpf,
 };

@@ -9,6 +9,12 @@ async function UpdateCliente(cliente) {
   console.log("Cliente atualizado com sucesso ", cliente.id);
 }
 
+async function ClienteByCnpjcpf(cnpjcpf) {
+  return await ClienteModel.findOne({
+    where: { identificacao_cnpjcpf: cnpjcpf },
+  });
+}
+
 async function InsertCliente(cliente) {
   console.log("Inserindo cliente ", cliente);
   await cliente.save();
@@ -19,4 +25,5 @@ module.exports = {
   ClienteById,
   UpdateCliente,
   InsertCliente,
+  ClienteByCnpjcpf,
 };

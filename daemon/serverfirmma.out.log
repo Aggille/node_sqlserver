@@ -6,3 +6,234 @@ Server is running on port 3000
 Conectando a:  Certificados
 [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 Server is running on port 3000
+Middleware de eventos acionado {
+  evento: 'Confirmação de Cadastro',
+  protocolo: '7001083528',
+  responsavelEvento: 'JOÃO DA SILVA:98765432100',
+  acao: 'Aprovado',
+  nomeAutoridadeRegistro: 'AUTORIDADE DE REGISTRO',
+  cnpjAutoridadeRegistro: '20085105000106',
+  apelidoPosto: 'AR FUTURA (INSTALAÇÃO TÉCNICA)',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  comVerificacao: 'true',
+  descricao: 'Troca de produto'
+}
+Processando evento: Confirmação de Cadastro
+Buscando pedido pelo protocolo: 7001083528
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'7001083528' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  evento: 'Confirmação de Cadastro',
+  protocolo: '7001083528',
+  responsavelEvento: 'JOÃO DA SILVA:98765432100',
+  acao: 'Aprovado',
+  nomeAutoridadeRegistro: 'AUTORIDADE DE REGISTRO',
+  cnpjAutoridadeRegistro: '20085105000106',
+  apelidoPosto: 'AR FUTURA (INSTALAÇÃO TÉCNICA)',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  comVerificacao: 'true',
+  descricao: 'Troca de produto'
+}
+Processando evento: Confirmação de Cadastro
+Buscando pedido pelo protocolo: 7001083528
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'7001083528' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  evento: 'Confirmação de Cadastro',
+  protocolo: '7001083528',
+  responsavelEvento: 'JOÃO DA SILVA:98765432100',
+  acao: 'Aprovado',
+  nomeAutoridadeRegistro: 'AUTORIDADE DE REGISTRO',
+  cnpjAutoridadeRegistro: '20085105000106',
+  apelidoPosto: 'AR FUTURA (INSTALAÇÃO TÉCNICA)',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  comVerificacao: 'true',
+  descricao: 'Troca de produto'
+}
+Processando evento: Confirmação de Cadastro
+Buscando pedido pelo protocolo: 7001083528
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'7001083528' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;
+Middleware de eventos acionado {
+  protocolo: '1008805772',
+  evento: 'Validação',
+  responsavelEvento: 'JENIFER ALINE DA ROSA:04098842009',
+  localAtendimento: 'PATRIA NOVA - PEDRO ADAMS FILHO',
+  dtLimiteVerificacao: '2025-09-10T08:48:09',
+  nomeAutoridadeRegistro: 'AR CERTIVALE',
+  cnpjAutoridadeRegistro: '18929920000154',
+  cnpjLocalAtendimento: '18929920000154',
+  documento: '03181748000126',
+  nomeRazaoSocial: 'JJN NETO TRANSPORTES LTDA',
+  numeroTitular: '190',
+  logradouroTitular: 'OPIMIO SCHIRMER',
+  bairroTitular: 'ALTO PAULISTA',
+  cepTitular: '93700000',
+  nomeMunicipioTitular: 'CAMPO BOM',
+  siglaUFTitular: 'RS',
+  email: 'JJN.NETO@TERRA.COM.BR',
+  telefone: '51999812760',
+  validacaoExterna: 'false',
+  dtHoraEvento: '2025-09-09T09:01:54.190',
+  comVerificacao: 'true',
+  razaoSocialPosto: 'CERTIVALE CERTIFICADORA DIGITAL',
+  apelidoPosto: 'PATRIA NOVA - PEDRO ADAMS FILHO - RS',
+  tipoMatch: 'Match em base local da AC (Reaproveitamento de dossiê)',
+  tipoEmissao: 'Emissão presencial',
+  candidataRemocaoACI: '0'
+}
+Processando evento: Validação
+Buscando pedido pelo protocolo: 1008805772
+Executing (default): SELECT [id], [idcliente], [idponto], [idcertificado], [idmidia], [validade], [idorigem], [valormidia], [valorcertificado], [valortotal], [emissao], [pagacomissaoparceiro], [pedidoorigem], [pedidorenovacao], [idparceiro], [dataenvioaviso], [idagentevalidacao], [idagenteverificacao], [datapgtocomissao], [precocompra], [despesas], [observacoes], [datarenovacao], [horainicialvalidade], [horafinalvalidade], [status], [numeroseriea3responsavel], [datasolicitacao], [dataverificacao], [datavalidacao], [datacancelamento], [formapagamento], [statuspagamento], [datarevogacao], [numeroserie], [idcertificadoar], [nomeaci], [cpfaci], [nomerevogado], [validacaoexterna], [enderecovalidacaoexterna], [datarevisaoatendimento], [idusuariorevisaoatendimento], [idtipopagamento], [numerocartao], [termos], [notaemitida], [cadastros], [valorpago], [renovacaoprogramada], [codigovoucher], [comissaopaga], [codigorevogacao], [descricaorevogacao], [dataliberacaofaturamento], [idusuarioliberacaofaturamento], [liberadofaturamento], [idnf], [idtipoemissao], [antecipacao], [qtdeparcelascartao], [urlhope], [semverificacaoaci], [biometria], [psbiolocal], [psbioglobal], [oc], [dataoc], [tipoultimoaviso] FROM [PEDIDOS] AS [Pedido] WHERE [Pedido].[pedidoorigem] = N'1008805772' ORDER BY [Pedido].[id] OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY;

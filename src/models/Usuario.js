@@ -25,6 +25,8 @@ class Usuario extends Model {
         inativo: DataTypes.BOOLEAN,
       },
       {
+        createdAt: false,
+        updatedAt: false,
         sequelize,
         tableName: "USUARIOS",
       }
