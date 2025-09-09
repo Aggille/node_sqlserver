@@ -2,3 +2,7 @@
 Conectando a:  Certificados
 [dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 Server is running on port 3000
+[dotenv@17.2.1] injecting env (12) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Conectando a:  Certificados
+[dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Server is running on port 3000

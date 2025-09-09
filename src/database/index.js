@@ -4,8 +4,10 @@ const Users = require("../models/User");
 const PedidoDto = require("../models/PedidoDto");
 const Pedido = require("../models/Pedido");
 const Evento = require("../models/Evento");
+const Usuario = require("../models/Usuario");
+const Cliente = require("../models/Cliente");
 
-const models = [Users, PedidoDto, Pedido, Evento];
+const models = [Users, PedidoDto, Pedido, Evento, Cliente, Usuario];
 
 class Database {
   constructor() {
