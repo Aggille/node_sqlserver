@@ -1,6 +1,6 @@
 const UserModel = require("../models/User");
 const { Op } = require("sequelize");
-
+const logger = require("../logger");
 async function userExists(userName, email) {
   return await UserModel.findOne({
     where: {
@@ -29,7 +29,7 @@ function validateUserData(req, res, next) {
 }
 
 async function deleteUser(req, res) {
-  console.log(req.body);
+  //logger.info("Delete user request received:", req.body);
 
   const user = await UserModel.findByPk(req.body.id);
   if (!user) {

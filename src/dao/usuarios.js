@@ -1,4 +1,5 @@
 const UsuarioModel = require("../models/Usuario");
+const logger = require("../logger");
 
 async function UsuarioById(id) {
   return await UsuarioModel.findByPk(id);
@@ -10,13 +11,13 @@ async function UsuarioByCpf(cpf) {
 
 async function UpdateUsuario(usuario) {
   await usuario.save();
-  console.log("Usuário atualizado com sucesso ", usuario.id);
+  //logger.info("Usuário atualizado com sucesso ", usuario.id);
 }
 
 async function InsertUsuario(usuario) {
-  console.log("Inserindo usuário ", usuario);
+  logger.info("Inserindo usuário ", usuario);
   await usuario.save();
-  console.log("Usuário inserido com sucesso ", usuario.id);
+  logger.info("Usuário inserido com sucesso ", usuario.id);
 }
 
 module.exports = {

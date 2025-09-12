@@ -36,13 +36,8 @@ async function validacao(req, res) {
 
   // pega o nome do usuario
   arr = responsavelEvento.split(":");
-  console.log(arr);
-  cpf = arr[1].trim();
 
-  // pesquisa certificado
-  // responvaleEvento nome:cpf - pesquisar o cpf -= jogar em Agende de Validação
-  // marcar validação externa :validadeExterna
-  // criar campo data de validação com a data do evento
+  cpf = arr[1].trim();
 
   const pedido = await PedidoByProtocolo(protocolo);
 
@@ -62,8 +57,8 @@ async function validacao(req, res) {
   await UpdatePedido(pedido);
 
   const cliente = await ClienteById(pedido.idcliente);
+
   if (cliente) {
-    console.log("Cliente do pedido ", cliente.nome);
     cliente.nome = nomeRazaoSocial;
     cliente.identificacao_cnpjcpf = documento;
     cliente.endereco_logradouro = logradouroTitular;
@@ -73,9 +68,7 @@ async function validacao(req, res) {
     cliente.contato_telefone = telefone;
     cliente.contato_email = email;
     await UpdateCliente(cliente);
-    console.log("Atualizando cliente do pedido ", cliente.nome);
   } else {
-    console.log("Cliente do pedido não encontrado ", pedido.idcliente);
   }
   const horaEvento = dtHoraEvento.substring(11, 19);
   const eventoModel = new Evento({

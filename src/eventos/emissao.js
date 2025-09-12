@@ -2,9 +2,9 @@ const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
 const { format } = require("date-fns");
 const Evento = require("../models/Evento");
 const { InsertEvento } = require("../dao/eventos");
-
+const logger = require("../logger");
 async function emissao(req, res) {
-  console.log("Processando evento de emissão:", req.body);
+  //logger.info("Processando evento de emissão:", req.body);
   const {
     protocolo,
     inicioValidade,

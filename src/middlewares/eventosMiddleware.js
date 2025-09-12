@@ -9,14 +9,15 @@ const { confirmacaoCadastro } = require("../eventos/confirmacaoCadastro");
 const { solicitacaoPeriodoUso } = require("../eventos/solicitacaoPeriodoUso");
 const { certificadoPeriodoUso } = require("../eventos/certificadoPeriodoUso");
 const { validacaoAutonoma } = require("../eventos/validacaoAutonoma");
+const logger = require("../logger");
 const {
   cancelamentoSolicitacao,
 } = require("../eventos/cancelamentoSolicitacao");
 
 const eventosMiddleware = async (req, res) => {
-  console.log("Middleware de eventos acionado", req.body);
+  //logger.info("Middleware de eventos acionado", req.body);
   const { evento } = req.body;
-  console.log("Processando evento:", evento);
+  logger.info("Processando evento:", evento);
 
   if (req.body.formaPagamento) {
     await pagamento(req, res);

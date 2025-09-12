@@ -1,4 +1,5 @@
 const EventosModel = require("../models/Evento");
+const logger = require("../logger");
 
 async function EventoById(id) {
   return await EventosModel.findByPk(id);
@@ -6,13 +7,13 @@ async function EventoById(id) {
 
 async function UpdateEvento(evento) {
   await evento.save();
-  console.log("Evento atualizado com sucesso ", evento.id);
+  //logger.info("Evento atualizado com sucesso ", evento.id);
 }
 
 async function InsertEvento(evento) {
-  console.log("Inserindo evento ", evento);
+  //logger.info("Inserindo evento ", evento);
   await evento.save();
-  console.log("Evento inserido com sucesso ", evento.id);
+  //logger.info("Evento inserido com sucesso ", evento.id);
 }
 
 module.exports = {

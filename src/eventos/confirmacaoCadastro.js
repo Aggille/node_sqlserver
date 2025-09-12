@@ -22,7 +22,7 @@ async function confirmacaoCadastro(req, res) {
   }
 
   const eventoModel = new Evento({
-    idpedido: 0,
+    idpedido: pedido.id,
     protocolo: protocolo,
     dataevento: new Date(),
     horaevento: new Date().toTimeString().substring(0, 8),
@@ -32,7 +32,7 @@ async function confirmacaoCadastro(req, res) {
 
   await InsertEvento(eventoModel);
 
-  // CRIAR UM CAMPO DATA DE CONFIRMAAÇÃO
+  // CRIAR UM CAMPO DATA DE CONFIRMACAÇÃO
   // E ATUALIZAR NESSE EVENTO
 
   return res

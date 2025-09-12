@@ -1,12 +1,12 @@
 const ClienteModel = require("../models/Cliente");
-
+const logger = require("../logger");
 async function ClienteById(id) {
   return await ClienteModel.findByPk(id);
 }
 
 async function UpdateCliente(cliente) {
   await cliente.save();
-  console.log("Cliente atualizado com sucesso ", cliente.id);
+  logger.info("Cliente atualizado com sucesso ", cliente.id);
 }
 
 async function ClienteByCnpjcpf(cnpjcpf) {
@@ -16,9 +16,9 @@ async function ClienteByCnpjcpf(cnpjcpf) {
 }
 
 async function InsertCliente(cliente) {
-  console.log("Inserindo cliente ", cliente);
+  logger.info("Inserindo cliente ", cliente);
   await cliente.save();
-  console.log("Cliente inserido com sucesso ", cliente.id);
+  logger.info("Cliente inserido com sucesso ", cliente.id);
 }
 
 module.exports = {

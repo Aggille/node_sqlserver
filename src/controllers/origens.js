@@ -1,8 +1,8 @@
 const { execSqlQuery } = require("../database/connection");
-
+const logger = require("../logger");
 async function getOrigens(req, res) {
   const results = await execSqlQuery("SELECT * FROM ORIGENS");
-  console.log(results);
+  //logger.info("Resultados da consulta de origens:", results);
   if (results.result.length === 0) {
     return res.status(404).json({ error: "Nenhuma origem encontrada" });
   } else {

@@ -1,7 +1,8 @@
 const PedidosModel = require("../models/Pedido");
+const logger = require("../logger");
 
 async function PedidoByProtocolo(protocolo) {
-  console.log("Buscando pedido pelo protocolo:", protocolo);
+  //logger.info("Buscando pedido pelo protocolo:", protocolo);
 
   const retorno = await PedidosModel.findOne({
     where: { pedidoorigem: protocolo },
@@ -16,7 +17,7 @@ async function PedidoById(id) {
 
 async function UpdatePedido(pedido) {
   await pedido.save();
-  console.log("Pedido atualizado com sucesso ", pedido.numeroserie, pedido.id);
+  //logger.info("Pedido atualizado com sucesso ", pedido.numeroserie, pedido.id);
 }
 
 module.exports = {

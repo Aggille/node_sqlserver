@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 const sql = require("mssql");
-
+const logger = require("../logger");
 let connection = null;
 
 const configDB = {
@@ -21,9 +21,9 @@ const configDB = {
 async function getConnection() {
   try {
     connection = await sql.connect(configDB);
-    console.log("Connected to SQL Server");
+    logger.info("Connected to SQL Server");
   } catch (err) {
-    console.error("Error connecting to SQL Server:", err);
+    logger.error("Error connecting to SQL Server:", err);
   }
 }
 
@@ -33,10 +33,10 @@ async function execSqlQuery(sqlQuery) {
     try {
       let result = await connection.request().query(sqlQuery);
       await closeConnection();
-      console.log("Query executed successfully");
+      //logger.info("Query executed successfully");
       return { result: result.recordset };
     } catch (error) {
-      console.error("Error executing SQL query:", error.message);
+      logger.error("Error executing SQL query:", error.message);
       return { error: error.message };
     }
   } else {
@@ -48,9 +48,9 @@ async function closeConnection() {
   if (connection) {
     try {
       await connection.close();
-      console.log("Connection closed");
+      logger.info("Connection closed");
     } catch (err) {
-      console.error("Error closing connection:", err);
+      logger.error("Error closing connection:", err);
     }
   }
 }
@@ -79,13 +79,13 @@ async function sequelizeConnection() {
   sequelize
     .authenticate()
     .then(() => {
-      console.log(
+      logger.info(
         "sequelize",
         "Conexão com o banco de dados estabelecida com sucesso."
       );
     })
     .catch((error) => {
-      console.error("sequelize", "Erro ao conectar ao banco de dados:", error);
+      logger.error("sequelize", "Erro ao conectar ao banco de dados:", error);
     });
 }
 

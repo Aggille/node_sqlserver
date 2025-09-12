@@ -1,10 +1,11 @@
 const PedidosModel = require("../models/PedidoDto");
 const op = require("sequelize");
+const logger = require("../logger");
 
 async function getPedidosDto(req, res) {
   const options = req.body.options || {};
 
-  console.log(options);
+  //logger.info("Consultando pedidos com as opções:", options);
 
   const allPedidos = await PedidosModel.findAll(options);
 
