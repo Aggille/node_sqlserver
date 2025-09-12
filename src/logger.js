@@ -16,6 +16,18 @@ const logger = winston.createLogger({
       maxFiles: 1,
       tailable: true,
     }),
+    new winston.transports.File({
+      filename: "info.log",
+      maxsize: 1024 * 1024 * 10,
+      maxFiles: 1,
+      tailable: true,
+    }),
+
+    new WinstonRotatingFile({
+      filename: "info.log",
+      rfsOptions: { size: "500M", maxFiles: 1, path: "logs" },
+    }),
+
     new WinstonRotatingFile({
       filename: "error.log",
       rfsOptions: { size: "500M", maxFiles: 1, path: "logs" },
