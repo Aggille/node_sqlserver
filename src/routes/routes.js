@@ -25,9 +25,8 @@ routes.use(routesNotificaEventos);
 // tudo abaixo daqui tem que estar autenticado
 routes.use(authentication);
 
-routes.use(routesPedidosDto);
 routes.use(routesPedidos);
-
+routes.use(routesPedidosDto);
 routes.use(routesUsers);
 routes.get("/health", (req, res) => {
   res.status(200).json({ status: "UP" });

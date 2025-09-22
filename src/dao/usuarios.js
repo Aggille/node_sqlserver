@@ -11,7 +11,12 @@ async function UsuarioByCpf(cpf) {
 
 async function UpdateUsuario(usuario) {
   await usuario.save();
-  //logger.info("Usuário atualizado com sucesso ", usuario.id);
+}
+
+async function ByUsuarioSenha(usuario, senha) {
+  return await UsuarioModel.findOne({
+    where: { usuario: usuario, senha: senha },
+  });
 }
 
 async function InsertUsuario(usuario) {

@@ -1,30 +1,29 @@
 const jwt = require("jsonwebtoken");
-const Users = require("../models/User");
+const Usuarios = require("../models/Usuario");
 const { Op } = require("sequelize");
 const { encrypt, decrypt } = require("../utils/crypt");
+const { log } = require("winston");
 
 class AuthenticationController {
   async authenticate(req, res) {
-    const { email, user_name, password } = req.body;
+    const { login, senha } = req.body;
 
     try {
       const whereClause = {};
-      if (email) {
-        whereClause.email = email;
-      } else if (user_name) {
-        whereClause.user_name = user_name;
+      if (login) {
+        whereClause.login = login;
+      } else if (senha) {
+        whereClause.senha = senha;
       } else {
-        return res
-          .status(401)
-          .json({ message: "Username ou email não informado" });
+        return res.status(401).json({ message: "Usuário ou senha inválidos" });
       }
 
-      const user = await Users.findOne({
+      const user = await Usuarios.findOne({
         where: whereClause,
       });
 
-      if (!user || !(await user.checkPassword(password))) {
-        return res.status(401).json({ message: "Usuário / senha inválidos" });
+      if (!user) {
+        return res.status(401).json({ message: "Usuário ou senha inválidos" });
       }
 
       const { id } = user;

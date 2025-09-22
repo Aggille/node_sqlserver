@@ -4,6 +4,7 @@ const { decrypt } = require("../utils/crypt");
 const verifyJwt = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
+
     if (!token) {
       return res.status(401).json({ message: "Token is required" });
     }
@@ -14,6 +15,7 @@ const verifyJwt = async (req, res, next) => {
     } catch (error) {
       return res.status(401).json({ message: "Invalid token" });
     }
+
     return next();
   } catch (error) {
     return res.status(401).json({ message: error.message });

@@ -59,7 +59,7 @@ async function sequelizeConnection() {
   const sequelize = new Sequelize(
     process.env.DB_DATABASE,
     process.env.DB_USERNAME,
-    process.env.PASSWORD,
+    process.env.DB_PASSWORD,
     {
       host: process.env.DB_SERVER,
       port: process.env.DB_PORT,
@@ -79,14 +79,13 @@ async function sequelizeConnection() {
   sequelize
     .authenticate()
     .then(() => {
-      logger.info(
-        "sequelize",
-        "Conexão com o banco de dados estabelecida com sucesso."
-      );
+      logger.info("Conexão com o banco de dados estabelecida com sucesso.");
     })
     .catch((error) => {
-      logger.error("sequelize", "Erro ao conectar ao banco de dados:", error);
+      logger.error("Erro ao conectar ao banco de dados:", error);
     });
+
+  return sequelize;
 }
 
-module.exports = { execSqlQuery };
+module.exports = { execSqlQuery, sequelizeConnection };

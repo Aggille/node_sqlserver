@@ -3,18 +3,18 @@
   "title": "User Schema",
   "type": "object",
   "properties": {
-    "name": {
+    "nome": {
       "type": "string"
     },
-    "user_name": {
+    "login": {
       "type": "string"
     },
     "email": {
       "type": "string"
     },
-    "password": {
+    "senha": {
       "type": "string"
     }
   },
-  "required": ["name", "user_name", "email", "password"]
+  "required": ["nome", "login", "email", "senha"]
 }

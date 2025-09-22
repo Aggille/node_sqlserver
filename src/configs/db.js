@@ -1,6 +1,6 @@
 require("dotenv").config();
 const logger = require("../logger");
-logger.info("Conectando a: ", process.env.DB_DATABASE);
+logger.info("Conectando ao banco de dados: " + process.env.DB_DATABASE);
 module.exports = {
   dialect: process.env.DB_DIALECT,
   host: process.env.DB_SERVER,
