@@ -127,6 +127,39 @@ async function getById(req, res) {
   return res.status(200).json(pedido);
 }
 
+async function getGerencial(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.Gerencial(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos gerencial:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getPorPagamentoComissao(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PorPagamentoComissao(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos por pagamento de comissão:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getPorEmissao(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PorEmissao(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos por emissão:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   getPedidosDto,
   getPorDataRenovacao,
@@ -140,4 +173,7 @@ module.exports = {
   getPedidosAVencerSemRenovacoes,
   getPedidosANotificar,
   getPedidosPorCliente,
+  getGerencial,
+  getPorPagamentoComissao,
+  getPorEmissao,
 };

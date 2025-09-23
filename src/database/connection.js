@@ -61,9 +61,11 @@ async function sequelizeConnection() {
     process.env.DB_USERNAME,
     process.env.DB_PASSWORD,
     {
+      logging: process.env.DB_LOG, // This disables logging of SQL queries
       host: process.env.DB_SERVER,
       port: process.env.DB_PORT,
       dialect: process.env.DB_DIALECT,
+
       dialectOptions: {
         options: {
           encrypt: false,

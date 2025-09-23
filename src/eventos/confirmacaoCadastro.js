@@ -1,6 +1,7 @@
 const { PedidoByProtocolo } = require("../dao/pedidos");
 const Evento = require("../models/Evento");
 const { InsertEvento } = require("../dao/eventos");
+const logger = require("../logger");
 
 async function confirmacaoCadastro(req, res) {
   const {
@@ -18,7 +19,9 @@ async function confirmacaoCadastro(req, res) {
 
   const pedido = await PedidoByProtocolo(protocolo);
   if (!pedido) {
-    return res.status(404).json({ message: "Pedido não encontrado" });
+    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
+    logger.error(msg);
+    return res.status(404).json({ message: msg });
   }
 
   const eventoModel = new Evento({
@@ -34,10 +37,9 @@ async function confirmacaoCadastro(req, res) {
 
   // CRIAR UM CAMPO DATA DE CONFIRMACAÇÃO
   // E ATUALIZAR NESSE EVENTO
+  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
 
-  return res
-    .status(200)
-    .json({ message: "Confirmação de cadastro realizada com sucesso" });
+  return res.status(200).json({ message: msg });
 }
 module.exports = {
   confirmacaoCadastro,

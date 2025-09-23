@@ -9,7 +9,6 @@ module.exports = {
   instanceName: process.env.DB_INSTANCE,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-
   authentication: {
     type: "default",
     options: {

@@ -101,6 +101,7 @@ async function AnaliseDeVendas(parametros) {
 
   return GetAll(aWhere, aOrder);
 }
+
 async function PedidosPorCliente(parametros) {
   const aWhere = {
     idcliente: parametros.idCliente,
@@ -288,6 +289,88 @@ async function PorDataRenovacao(parametros) {
   return GetAll(aWhere, aOrder);
 }
 
+async function Gerencial(parametros) {
+  const aWhere = {
+    idcliente:
+      parametros.idCliente > 0
+        ? parametros.idCliente
+        : { [Sequelize.Op.gte]: 0 },
+    idorigem:
+      parametros.idorigem > 0 ? parametros.idOrigem : { [Sequelize.Op.gte]: 0 },
+    idmidia:
+      parametros.idMidia > 0 ? parametros.idMidia : { [Sequelize.Op.gte]: 0 },
+    idparceiro:
+      parametros.idParceiro > 0
+        ? parametros.idParceiro
+        : { [Sequelize.Op.gte]: 0 },
+    idponto:
+      parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
+    emissao: {
+      [Sequelize.Op.between]: [
+        parametros.emissaoInicial,
+        parametros.emissaoFinal,
+      ],
+    },
+  };
+
+  const aOrder = [["idorigem", "ASC"]];
+  return GetAll(aWhere, aOrder);
+}
+
+async function PorPagamentoComissao(parametro) {
+  const aWhere = {
+    idparceiro:
+      parametros.idParceiro > 0
+        ? parametros.idParceiro
+        : { [Sequelize.Op.gte]: 0 },
+    idponto:
+      parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
+    datapgtocomissao: {
+      [Sequelize.Op.between]: [parametros.dataInicial, parametros.dataFinal],
+    },
+  };
+
+  const aOrder = [
+    ["nomeparceiro", "ASC"],
+    ["idparceiro", "ASC"],
+  ];
+  return GetAll(aWhere, aOrder);
+}
+
+async function PorEmissao(parametros) {
+  const aWhere = {
+    idcliente:
+      parametros.idCliente > 0
+        ? parametros.idCliente
+        : { [Sequelize.Op.gte]: 0 },
+    idcertificado:
+      parametros.idCertificado > 0
+        ? parametros.idCertificado
+        : { [Sequelize.Op.gte]: 0 },
+    idmidia:
+      parametros.idMidia > 0 ? parametros.idMidia : { [Sequelize.Op.gte]: 0 },
+    idparceiro:
+      parametros.idParceiro > 0
+        ? parametros.idParceiro
+        : { [Sequelize.Op.gte]: 0 },
+    idponto:
+      parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
+
+    emissao: {
+      [Sequelize.Op.between]: [
+        parametros.emissaoInicial,
+        parametros.emissaoFinal,
+      ],
+    },
+  };
+
+  const aOrder = [
+    ["emissao", "ASC"],
+    ["pedidoorigem", "ASC"],
+  ];
+  return GetAll(aWhere, aOrder);
+}
+
 module.exports = {
   PedidoDtoById,
   PorDataRenovacao,
@@ -300,4 +383,7 @@ module.exports = {
   PedidosANotificar,
   PedidosAVencerSemRenovacoes,
   PedidosPorCliente,
+  Gerencial,
+  PorPagamentoComissao,
+  PorEmissao,
 };
