@@ -21,6 +21,67 @@ async function PorPedidoOrigem(parametros) {
   return GetAll(aWhere, aOrder);
 }
 
+async function PedidosAVencerSemRenovacoes(parametros) {
+  const aWhere = {
+    [Sequelize.Op.and]: [
+      Sequelize.literal("coalesce( PEDIDORENOVACAO,'' ) <> ''"),
+    ],
+    validade: {
+      [Sequelize.Op.between]: [
+        parametros.validadeInicial,
+        parametros.validadeFinal,
+      ],
+    },
+    idparceiro:
+      parametros.idParceiro > 0
+        ? parametros.idParceiro
+        : { [Sequelize.Op.gte]: 0 },
+    idcliente:
+      parametros.idCliente > 0
+        ? parametros.idCliente
+        : { [Sequelize.Op.gte]: 0 },
+  };
+  const aOrder = [
+    ["emissao", "ASC"],
+    ["pedidoorigem", "ASC"],
+  ];
+
+  return GetAll(aWhere, aOrder);
+}
+
+async function PedidosAVencer(parametros) {
+  const aWhere = {
+    validade: {
+      [Sequelize.Op.between]: [
+        parametros.validadeInicial,
+        parametros.validadeFinal,
+      ],
+    },
+    status:
+      parametros.status > 0 ? parametros.status : { [Sequelize.Op.ne]: 3 },
+    idparceiro:
+      parametros.idParceiro > 0
+        ? parametros.idParceiro
+        : { [Sequelize.Op.gte]: 0 },
+    idcliente:
+      parametros.idCliente > 0
+        ? parametros.idCliente
+        : { [Sequelize.Op.gte]: 0 },
+    pedidorenovacao: {
+      [Sequelize.Op.or]: [
+        "",
+        { [Sequelize.Op.eq]: Sequelize.col("pedidoorigem") },
+      ],
+    },
+  };
+  const aOrder = [
+    ["validade", "ASC"],
+    ["pedidoorigem", "ASC"],
+  ];
+
+  return GetAll(aWhere, aOrder);
+}
+
 async function AnaliseDeVendas(parametros) {
   const aWhere = {
     idgrupo:
@@ -37,6 +98,15 @@ async function AnaliseDeVendas(parametros) {
     ["idcertificado", "ASC"],
     ["emissao", "ASC"],
   ];
+
+  return GetAll(aWhere, aOrder);
+}
+async function PedidosPorCliente(parametros) {
+  const aWhere = {
+    idcliente: parametros.idCliente,
+  };
+
+  const aOrder = [["idorigem", "ASC"]];
 
   return GetAll(aWhere, aOrder);
 }
@@ -57,6 +127,55 @@ async function PorTipoDePagamento(parametros) {
   const aOrder = [
     ["idtipopagamento", "ASC"],
     ["emissao", "ASC"],
+  ];
+
+  return GetAll(aWhere, aOrder);
+}
+
+async function PedidosANotificar(parametros) {
+  let w = "";
+
+  if (parametros.statusNotificacao && parametros.statusNotificacao >= 0) {
+    if (parametros.statusNotificacao === "9") {
+      w = "DataEnvioAviso is null";
+    } else {
+      w = `TipoUltimoAviso=${parametros.statusNotificacao} and DataEnvioAviso is not null`;
+    }
+  }
+
+  const aWhere = {
+    [Sequelize.Op.and]: [Sequelize.literal(w)],
+    status:
+      parametros.status > 0
+        ? parametros.status
+        : {
+            [Sequelize.Op.and]: [
+              { [Sequelize.Op.lt]: 99 },
+              { [Sequelize.Op.ne]: 3 },
+            ],
+          },
+
+    emissao: {
+      [Sequelize.Op.between]: [
+        parametros.emissaoInicial,
+        parametros.emissaoFinal,
+      ],
+    },
+
+    validade: {
+      [Sequelize.Op.between]: [
+        parametros.validadeInicial,
+        parametros.validadeFinal,
+      ],
+    },
+    idcliente:
+      parametros.idCliente > 0
+        ? parametros.idCliente
+        : { [Sequelize.Op.gte]: 0 },
+  };
+  const aOrder = [
+    ["validade", "ASC"],
+    ["pedidoorigem", "ASC"],
   ];
 
   return GetAll(aWhere, aOrder);
@@ -177,4 +296,8 @@ module.exports = {
   PorStatus,
   PorTipoDePagamento,
   AnaliseDeVendas,
+  PedidosAVencer,
+  PedidosANotificar,
+  PedidosAVencerSemRenovacoes,
+  PedidosPorCliente,
 };

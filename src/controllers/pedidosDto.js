@@ -74,6 +74,50 @@ async function getAnaliseDeVendas(req, res) {
   }
 }
 
+async function getPedidosAVencer(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PedidosAVencer(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos a vencer:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getPedidosAVencerSemRenovacoes(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PedidosAVencerSemRenovacoes(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos a vencer sem renovações:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getPedidosANotificar(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PedidosANotificar(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos a notificar:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getPedidosPorCliente(req, res) {
+  parametros = req.body;
+  const allPedidos = await dao.PedidosPorCliente(parametros);
+  try {
+    return res.status(200).json(allPedidos);
+  } catch (error) {
+    logger.error("Error fetching pedidos por cliente:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 async function getById(req, res) {
   const { id } = req.params;
   const pedido = await dao.PedidoDtoById(id);
@@ -92,4 +136,8 @@ module.exports = {
   getPorTipoDePagamento,
   getById,
   getAnaliseDeVendas,
+  getPedidosAVencer,
+  getPedidosAVencerSemRenovacoes,
+  getPedidosANotificar,
+  getPedidosPorCliente,
 };
