@@ -15,9 +15,8 @@ const {
 } = require("../eventos/cancelamentoSolicitacao");
 
 const eventosMiddleware = async (req, res) => {
-  //logger.info("Middleware de eventos acionado", req.body);
   const { evento } = req.body;
-  logger.info("Processando evento:", evento);
+  logger.info("Processando evento:" + evento);
 
   if (req.body.formaPagamento) {
     await pagamento(req, res);

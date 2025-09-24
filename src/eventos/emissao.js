@@ -1,8 +1,12 @@
-const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
+const {
+  PedidoByProtocoloWithMessage,
+  UpdatePedido,
+} = require("../dao/pedidos");
 const { format } = require("date-fns");
 const Evento = require("../models/Evento");
-const { InsertEvento } = require("../dao/eventos");
+const { InsertEventoWithMessage } = require("../dao/eventos");
 const logger = require("../logger");
+
 async function emissao(req, res) {
   //logger.info("Processando evento de emissão:", req.body);
   const {
@@ -14,13 +18,7 @@ async function emissao(req, res) {
     evento,
   } = req.body;
 
-  const pedido = await PedidoByProtocolo(protocolo);
-
-  if (!pedido) {
-    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
-    logger.error(msg);
-    return res.status(404).json({ message: msg });
-  }
+  const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
   const validade = fimValidade;
   const horaInicial = inicioValidade.substring(11, 19);
@@ -48,9 +46,7 @@ async function emissao(req, res) {
     jsonevento: JSON.stringify(req.body),
   });
 
-  await InsertEvento(eventoModel);
-  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
-  return res.status(200).json({ message: msg });
+  await InsertEventoWithMessage(eventoModel);
 }
 
 module.exports = { emissao };

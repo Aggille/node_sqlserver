@@ -1,5 +1,7 @@
+const { PedidoByProtocoloWithMessage } = require("../dao/pedidos");
 const Evento = require("../models/Evento");
-const { InsertEvento } = require("../dao/eventos");
+const { InsertEventoWithMessage } = require("../dao/eventos");
+const logger = require("../logger");
 
 async function solicitacaoPeriodoUso(req, res) {
   const {
@@ -12,13 +14,7 @@ async function solicitacaoPeriodoUso(req, res) {
     primeiraEmissao,
   } = req.body;
 
-  const pedido = await PedidoByProtocolo(protocolo);
-
-  if (!pedido) {
-    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
-    logger.error(msg);
-    return res.status(404).json({ message: msg });
-  }
+  const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
   const eventoModel = new Evento({
     idpedido: 0,
@@ -29,9 +25,7 @@ async function solicitacaoPeriodoUso(req, res) {
     jsonevento: JSON.stringify(req.body),
   });
 
-  await InsertEvento(eventoModel);
-  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
-  return res.status(200).json({ message: msg });
+  await InsertEventoWithMessage(eventoModel);
 }
 
 module.exports = {

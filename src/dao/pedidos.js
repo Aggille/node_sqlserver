@@ -2,13 +2,29 @@ const PedidosModel = require("../models/Pedido");
 const logger = require("../logger");
 
 async function PedidoByProtocolo(protocolo) {
-  //logger.info("Buscando pedido pelo protocolo:", protocolo);
-
-  const retorno = await PedidosModel.findOne({
+  const pedido = await PedidosModel.findOne({
     where: { pedidoorigem: protocolo },
   });
 
-  return retorno;
+  return pedido;
+}
+
+async function PedidoByProtocoloWithMessage(protocolo, req, res) {
+  const { evento } = req.body;
+
+  const pedido = await PedidosModel.findOne({
+    where: { pedidoorigem: protocolo },
+  });
+
+  if (!pedido) {
+    const msg = `${
+      evento ?? "Evento Indefinodo"
+    }: Pedido ${protocolo} não encontrado`;
+    logger.error(msg);
+    return res.status(404).json({ message: msg });
+  } else {
+    return pedido;
+  }
 }
 
 async function PedidoById(id) {
@@ -24,4 +40,5 @@ module.exports = {
   PedidoByProtocolo,
   PedidoById,
   UpdatePedido,
+  PedidoByProtocoloWithMessage,
 };

@@ -7,17 +7,23 @@ async function EventoById(id) {
 
 async function UpdateEvento(evento) {
   await evento.save();
-  //logger.info("Evento atualizado com sucesso ", evento.id);
+}
+
+async function InsertEventoWithMessage(evento, req, res) {
+  console.log("Evento Incluido", evento);
+  const msg = `Pedido ${evento.protocolo}: Evento ${evento.tipoevento} realizado com sucesso`;
+  await evento.save();
+  logger.info(msg);
+  return res.status(200).json({ message: msg });
 }
 
 async function InsertEvento(evento) {
-  //logger.info("Inserindo evento ", evento);
   await evento.save();
-  //logger.info("Evento inserido com sucesso ", evento.id);
 }
 
 module.exports = {
   EventoById,
   UpdateEvento,
   InsertEvento,
+  InsertEventoWithMessage,
 };

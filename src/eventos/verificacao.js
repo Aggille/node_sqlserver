@@ -1,6 +1,12 @@
-const Evento = require("../models/Evento");
-const { PedidoByProtocolo, UpdatePedido } = require("../dao/pedidos");
+const {
+  PedidoByProtocoloWithMessage,
+  UpdatePedido,
+} = require("../dao/pedidos");
 const { format } = require("date-fns");
+const Evento = require("../models/Evento");
+const { InsertEventoWithMessage } = require("../dao/eventos");
+const logger = require("../logger");
+
 async function verificacao(req, res) {
   const {
     protocolo,
@@ -17,13 +23,7 @@ async function verificacao(req, res) {
     apelidoPosto,
   } = req.body;
 
-  const pedido = await PedidoByProtocolo(protocolo);
-
-  if (!pedido) {
-    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
-    logger.error(msg);
-    return res.status(404).json({ message: msg });
-  }
+  const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
   const obs = `Verificação notificada em ${format(
     new Date(),
@@ -47,9 +47,7 @@ async function verificacao(req, res) {
     jsonevento: JSON.stringify(req.body),
   });
 
-  await InsertEvento(eventoModel);
-  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
-  return res.status(200).json({ message: msg });
+  await InsertEventoWithMessage(eventoModel);
 }
 
 module.exports = {
