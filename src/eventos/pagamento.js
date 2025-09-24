@@ -27,7 +27,8 @@ async function pagamento(req, res) {
     dtHoraEvento,
   } = req.body;
 
-  return res.status(200).json({ message: "Pagamento notificado com sucesso" });
+  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
+  return res.status(200).json({ message: msg });
 }
 module.exports = {
   pagamento,

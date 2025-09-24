@@ -13,7 +13,6 @@ const logger = winston.createLogger({
     new winston.transports.Console(),
     new winston.transports.File({ filename: "logs/info.log", level: "info" }),
     new winston.transports.File({ filename: "logs/error.log", level: "error" }),
-    new winston.transports.File({ filename: "logs/warn.log", level: "warn" }),
     new DailyRotateFile({
       filename: "logs/log-%DATE%.log",
       datePattern: "DD-MM-YYYY",

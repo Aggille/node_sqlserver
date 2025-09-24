@@ -20,7 +20,9 @@ async function verificacao(req, res) {
   const pedido = await PedidoByProtocolo(protocolo);
 
   if (!pedido) {
-    return res.status(404).json({ message: "Pedido não encontrado" });
+    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
+    logger.error(msg);
+    return res.status(404).json({ message: msg });
   }
 
   const obs = `Verificação notificada em ${format(
@@ -41,15 +43,13 @@ async function verificacao(req, res) {
     protocolo: protocolo,
     dataevento: dtHoraEvento.substring(0, 10),
     horaevento: horaEvento,
-    evento: evento,
+    tipoevento: evento,
     jsonevento: JSON.stringify(req.body),
   });
 
   await InsertEvento(eventoModel);
-
-  return res
-    .status(200)
-    .json({ message: "Verificação notificada com sucesso" });
+  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
+  return res.status(200).json({ message: msg });
 }
 
 module.exports = {

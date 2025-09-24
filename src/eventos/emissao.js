@@ -15,9 +15,13 @@ async function emissao(req, res) {
   } = req.body;
 
   const pedido = await PedidoByProtocolo(protocolo);
+
   if (!pedido) {
-    return res.status(404).json({ message: "Pedido não encontrado" });
+    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
+    logger.error(msg);
+    return res.status(404).json({ message: msg });
   }
+
   const validade = fimValidade;
   const horaInicial = inicioValidade.substring(11, 19);
   const horaFinal = fimValidade.substring(11, 19);
@@ -45,8 +49,8 @@ async function emissao(req, res) {
   });
 
   await InsertEvento(eventoModel);
-
-  return res.status(200).json({ message: "Emissão notificada com sucesso" });
+  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
+  return res.status(200).json({ message: msg });
 }
 
 module.exports = { emissao };

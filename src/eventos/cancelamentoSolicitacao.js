@@ -24,21 +24,26 @@ async function cancelamentoSolicitacao(req, res) {
     comVerificacao,
   } = req.body;
 
+  const pedido = await PedidoByProtocolo(protocolo);
+
+  if (!pedido) {
+    const msg = `${evento}: Pedido ${protocolo} não encontrado`;
+    logger.error(msg);
+    return res.status(404).json({ message: msg });
+  }
+
   const eventoModel = new Evento({
     idpedido: 0,
     protocolo: protocolo,
     dataevento: new Date(),
     horaevento: new Date().toTimeString().substring(0, 8),
-    evento: evento,
+    tipoevento: evento,
     jsonevento: JSON.stringify(req.body),
   });
 
   await InsertEvento(eventoModel);
-
-  // Aqui você pode adicionar a lógica para processar o evento com verificação
-  return res.status(200).json({
-    message: "Cancelamento de solicitação processado com sucesso",
-  });
+  const msg = `Pedido ${protocolo}: Evento ${evento} realizado com sucesso`;
+  return res.status(200).json({ message: msg });
 }
 
 module.exports = {

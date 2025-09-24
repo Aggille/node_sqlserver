@@ -18,6 +18,7 @@ async function confirmacaoCadastro(req, res) {
   } = req.body;
 
   const pedido = await PedidoByProtocolo(protocolo);
+
   if (!pedido) {
     const msg = `${evento}: Pedido ${protocolo} não encontrado`;
     logger.error(msg);
@@ -29,7 +30,7 @@ async function confirmacaoCadastro(req, res) {
     protocolo: protocolo,
     dataevento: new Date(),
     horaevento: new Date().toTimeString().substring(0, 8),
-    evento: evento,
+    tipoevento: evento,
     jsonevento: JSON.stringify(req.body),
   });
 
