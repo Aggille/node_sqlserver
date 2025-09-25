@@ -27,8 +27,8 @@ class PedidoDto extends Model {
         renovacaoprogramada: { type: DataTypes.BOOLEAN, allowNull: true },
         pedidorenovacao: { type: DataTypes.STRING, allowNull: true },
 
-        horafinalvalidade: { type: DataTypes.STRING, allowNull: true },
-        horainicialvalidade: { type: DataTypes.STRING, allowNull: true },
+        // horafinalvalidade: { type: DataTypes.STRING, allowNull: true },
+        // horainicialvalidade: { type: DataTypes.STRING, allowNull: true },
 
         idcertificado: { type: DataTypes.INTEGER, allowNull: true },
         idcliente: { type: DataTypes.INTEGER, allowNull: true },
