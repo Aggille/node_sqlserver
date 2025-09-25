@@ -3,6 +3,17 @@ const dao = require("../dao/pedidodto");
 const op = require("sequelize");
 const logger = require("../logger");
 
+function getFuncName() {
+  return getFuncName.caller.name;
+}
+
+async function ShowError(res, err) {
+  const modulo = getFuncName();
+  logger.error(`Error fetching ${modulo}:`, err).message;
+  console.log(err.message);
+  return res.status(500).json({ Error: err.message });
+}
+
 async function getPedidosDto(req, res) {
   const options = req.body.options || {};
   const allPedidos = await PedidosModel.findAll(options);
@@ -14,8 +25,7 @@ async function getPorDataRenovacao(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por data de renovacao:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -25,8 +35,7 @@ async function getPorEmissaoValidade(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por emissao e validade:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -36,8 +45,7 @@ async function getPorPedidoOrigem(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por pedido origem:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -47,8 +55,7 @@ async function getPorStatus(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por status:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -58,8 +65,7 @@ async function getPorTipoDePagamento(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por tipo de pagamento:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -69,8 +75,7 @@ async function getAnaliseDeVendas(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por analise de vendas:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -80,8 +85,7 @@ async function getPedidosAVencer(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos a vencer:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -91,8 +95,7 @@ async function getPedidosAVencerSemRenovacoes(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos a vencer sem renovações:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -102,8 +105,7 @@ async function getPedidosANotificar(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos a notificar:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -113,8 +115,7 @@ async function getPedidosPorCliente(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por cliente:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -132,9 +133,8 @@ async function getGerencial(req, res) {
   const allPedidos = await dao.Gerencial(parametros);
   try {
     return res.status(200).json(allPedidos);
-  } catch (error) {
-    logger.error("Error fetching pedidos gerencial:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+  } catch (err) {
+    await ShowError(res, err);
   }
 }
 
@@ -144,8 +144,7 @@ async function getPorPagamentoComissao(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por pagamento de comissão:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
@@ -155,8 +154,7 @@ async function getPorEmissao(req, res) {
   try {
     return res.status(200).json(allPedidos);
   } catch (error) {
-    logger.error("Error fetching pedidos por emissão:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    await ShowError(res, err);
   }
 }
 
