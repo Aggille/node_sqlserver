@@ -3,13 +3,14 @@ const logger = require("../logger");
 const { Sequelize, sql } = require("sequelize");
 const { format } = require("date-fns");
 const { id } = require("date-fns/locale");
+const dao = require("../dao/genericDao");
 
 async function PedidoDtoById(id) {
-  return await PedidoDtoModel.findByPk(id);
+  return await dao.FindByPk(PedidoDtoModel, id);
 }
 
 async function GetAll(where, order) {
-  return await PedidoDtoModel.findAll({ where, order });
+  return await dao.FindAll(PedidoDtoModel, where, order);
 }
 
 async function PorPedidoOrigem(parametros) {
@@ -18,7 +19,8 @@ async function PorPedidoOrigem(parametros) {
     ["status", "ASC"],
     ["emissao", "ASC"],
   ];
-  return GetAll(aWhere, aOrder);
+
+  return await dao.GetAll(aWhere, aOrder);
 }
 
 async function PedidosAVencerSemRenovacoes(parametros) {
@@ -46,7 +48,7 @@ async function PedidosAVencerSemRenovacoes(parametros) {
     ["pedidoorigem", "ASC"],
   ];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PedidosAVencer(parametros) {
@@ -79,7 +81,7 @@ async function PedidosAVencer(parametros) {
     ["pedidoorigem", "ASC"],
   ];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function AnaliseDeVendas(parametros) {
@@ -99,7 +101,7 @@ async function AnaliseDeVendas(parametros) {
     ["emissao", "ASC"],
   ];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PedidosPorCliente(parametros) {
@@ -109,7 +111,7 @@ async function PedidosPorCliente(parametros) {
 
   const aOrder = [["idorigem", "ASC"]];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PorTipoDePagamento(parametros) {
@@ -130,7 +132,7 @@ async function PorTipoDePagamento(parametros) {
     ["emissao", "ASC"],
   ];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PedidosANotificar(parametros) {
@@ -179,7 +181,7 @@ async function PedidosANotificar(parametros) {
     ["pedidoorigem", "ASC"],
   ];
 
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PorStatus(parametros) {
@@ -244,7 +246,7 @@ async function PorEmissaoValidade(parametros) {
     ["emissao", "ASC"],
     ["pedidoorigem", "ASC"],
   ];
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PorDataRenovacao(parametros) {
@@ -314,7 +316,7 @@ async function Gerencial(parametros) {
   };
 
   const aOrder = [["idorigem", "ASC"]];
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PorPagamentoComissao(parametro) {
@@ -334,7 +336,7 @@ async function PorPagamentoComissao(parametro) {
     ["nomeparceiro", "ASC"],
     ["idparceiro", "ASC"],
   ];
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 async function PorEmissao(parametros) {
@@ -368,7 +370,7 @@ async function PorEmissao(parametros) {
     ["emissao", "ASC"],
     ["pedidoorigem", "ASC"],
   ];
-  return GetAll(aWhere, aOrder);
+  return await GetAll(aWhere, aOrder);
 }
 
 module.exports = {

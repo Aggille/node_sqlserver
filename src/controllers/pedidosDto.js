@@ -10,7 +10,6 @@ function getFuncName() {
 async function ShowError(res, err) {
   const modulo = getFuncName();
   logger.error(`Error fetching ${modulo}:`, err).message;
-  console.log(err.message);
   return res.status(500).json({ Error: err.message });
 }
 
