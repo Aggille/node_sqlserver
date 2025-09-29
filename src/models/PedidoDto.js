@@ -6,18 +6,16 @@ class PedidoDto extends Model {
     super.init(
       {
         id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
-        // datas como string para faciliar a query
-        datarenovacao: { type: DataTypes.DATE, allowNull: true },
-        emissao: { type: DataTypes.DATE, allowNull: true },
-        validade: { type: DataTypes.DATE, allowNull: true },
-        dataenvioaviso: { type: DataTypes.DATE, allowNull: true },
-        datapgtocomissao: { type: DataTypes.DATE, allowNull: true },
-        emissaonota: { type: DataTypes.DATE, allowNull: true },
-        datarevogacao: { type: DataTypes.DATE, allowNull: true },
-        dataoc: { type: DataTypes.DATE, allowNull: true },
-        //
 
-        pedidoorigem: { type: DataTypes.STRING, allowNull: true },
+        datarenovacao: { type: DataTypes.DATE, allowNull: false },
+        emissao: { type: DataTypes.DATE, allowNull: false },
+        validade: { type: DataTypes.DATE, allowNull: false },
+        dataenvioaviso: { type: DataTypes.DATE, allowNull: false },
+        datapgtocomissao: { type: DataTypes.DATE, allowNull: false },
+        emissaonota: { type: DataTypes.DATE, allowNull: false },
+        datarevogacao: { type: DataTypes.DATE, allowNull: false },
+        dataoc: { type: DataTypes.DATE, allowNull: false },
+
         idtipoemissao: { type: DataTypes.INTEGER, allowNull: true },
         valorcertificado: { type: DataTypes.FLOAT, allowNull: true },
         valormidia: { type: DataTypes.FLOAT, allowNull: true },
@@ -78,6 +76,9 @@ class PedidoDto extends Model {
         idmodelocertificado: { type: DataTypes.INTEGER, allowNull: true },
         oc: { type: DataTypes.STRING, allowNull: true },
         tipoultimoaviso: { type: DataTypes.STRING, allowNull: true },
+        cpfresponsavel: { type: DataTypes.STRING, allowNull: true },
+        contato_telefone: { type: DataTypes.STRING, allowNull: true },
+        telefoneresponsavel: { type: DataTypes.STRING, allowNull: true },
       },
       {
         createdAt: false,
