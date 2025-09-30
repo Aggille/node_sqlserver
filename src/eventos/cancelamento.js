@@ -20,7 +20,7 @@ async function cancelamento(req, res) {
     jsonevento: JSON.stringify(req.body),
   });
 
-  await InsertEventoWithMessage(eventoModel);
+  await InsertEventoWithMessage(eventoModel, req, res);
 }
 
 module.exports = {
