@@ -14,7 +14,7 @@ class GenericDao {
   }
 
   static async FindByPk(model, id) {
-    return await model.FindByPk(id);
+    return await model.findByPk(id);
   }
 
   static async FindOne(model, where) {

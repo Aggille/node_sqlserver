@@ -13,11 +13,10 @@ async function ShowError(res, err) {
 }
 
 async function getPesquisaCrmDto(req, res) {
-  console.log(req.body);
   parametros = req.body;
-  const alDto = await dao.PesquisaCrmDto(parametros);
+  const allDto = await dao.PesquisaCrmDto(parametros);
   try {
-    return res.status(200).json(alDto);
+    return res.status(200).json(allDto);
   } catch (error) {
     await ShowError(res, err);
   }

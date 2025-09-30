@@ -6,8 +6,9 @@ const Pedido = require("../models/Pedido");
 const Evento = require("../models/Evento");
 const Usuario = require("../models/Usuario");
 const Cliente = require("../models/Cliente");
+const CrmDto = require("../models/CrmDto");
 
-const models = [Users, PedidoDto, Pedido, Evento, Cliente, Usuario];
+const models = [Users, PedidoDto, Pedido, Evento, Cliente, Usuario, CrmDto];
 
 class Database {
   constructor() {

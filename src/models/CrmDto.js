@@ -27,29 +27,42 @@ class CrmDto extends Model {
           primaryKey: false,
         },
         data: { type: DataTypes.DATE, allowNull: false },
-        pedidos_vencimento: { type: DataTypes.DATE, allowNull: false },
+        pedidovencimento: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          field: "pedidos_vencimento",
+        },
         tipocontato: {
           type: DataTypes.INTEGER,
           allowNull: true,
           primaryKey: false,
         },
         contato: { type: DataTypes.STRING, allowNull: true, primaryKey: false },
-        cliente_nome: {
+        conteudo: {
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,
         },
-        cliente_telefone: {
+        clientenome: {
+          field: "cliente_nome",
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,
         },
-        usuario_nome: {
+        clientetelefone: {
+          field: "cliente_telefone",
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,
         },
-        pedidos_pedidorenovacao: {
+        usuarionome: {
+          field: "usuario_nome",
+          type: DataTypes.STRING,
+          allowNull: true,
+          primaryKey: false,
+        },
+        pedidoprotocolorenovacao: {
+          field: "pedidos_pedidorenovacao",
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,

@@ -3,13 +3,14 @@ const logger = require("../logger");
 const { Sequelize, sql } = require("sequelize");
 const { format } = require("date-fns");
 const { id } = require("date-fns/locale");
+const dao = require("../dao/genericDao");
 
 async function PedidoDtoById(id) {
   return await PedidoDtoModel.findByPk(id);
 }
 
 async function GetAll(where, order) {
-  return await PedidoDtoModel.findAll({ where, order });
+  return await dao.FindAll(PedidoDtoModel, where, order);
 }
 
 async function PorPedidoOrigem(parametros) {
@@ -317,7 +318,7 @@ async function Gerencial(parametros) {
   return GetAll(aWhere, aOrder);
 }
 
-async function PorPagamentoComissao(parametro) {
+async function PorPagamentoComissao(parametros) {
   const aWhere = {
     idparceiro:
       parametros.idParceiro > 0

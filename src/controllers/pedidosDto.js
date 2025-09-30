@@ -1,5 +1,6 @@
 const PedidosModel = require("../models/PedidoDto");
 const dao = require("../dao/pedidodto");
+const daoGeneric = require("../dao/genericDao");
 const op = require("sequelize");
 const logger = require("../logger");
 
@@ -10,7 +11,6 @@ function getFuncName() {
 async function ShowError(res, err) {
   const modulo = getFuncName();
   logger.error(`Error fetching ${modulo}:`, err).message;
-  console.log(err.message);
   return res.status(500).json({ Error: err.message });
 }
 

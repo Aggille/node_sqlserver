@@ -10,7 +10,6 @@ async function UpdateEvento(evento) {
 }
 
 async function InsertEventoWithMessage(evento, req, res) {
-  console.log("Evento Incluido", evento);
   const msg = `Pedido ${evento.protocolo}: Evento ${evento.tipoevento} realizado com sucesso`;
   await evento.save();
   logger.info(msg);
