@@ -1,11 +1,20 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { Model } = require("sequelize");
-
+const { FormatarCnpjCpf } = require("../utils/masks");
+const { getStatusCrmById } = require("../dao/statusCrmDao");
+const { StatusCrmDto } = require("./StatusCrmDto");
 class CrmDto extends Model {
   static init(sequelize) {
     super.init(
       {
         id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
+        statusnome: {
+          type: DataTypes.VIRTUAL,
+          get() {
+            const status = getStatusCrmById(this.idstatus);
+            return status == null ? `${this.idstatus} Indefinido` : status.nome;
+          },
+        },
         idcliente: {
           type: DataTypes.INTEGER,
           allowNull: true,
@@ -71,6 +80,12 @@ class CrmDto extends Model {
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,
+        },
+        cliente_cnpjcpf_formatado: {
+          type: DataTypes.VIRTUAL,
+          get() {
+            return FormatarCnpjCpf(this.cliente_cnpjcpf);
+          },
         },
       },
       {

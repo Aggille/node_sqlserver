@@ -17,7 +17,7 @@ async function getPesquisaCrmDto(req, res) {
   const allDto = await dao.PesquisaCrmDto(parametros);
   try {
     return res.status(200).json(allDto);
-  } catch (error) {
+  } catch (err) {
     await ShowError(res, err);
   }
 }
