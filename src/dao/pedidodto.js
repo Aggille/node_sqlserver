@@ -23,16 +23,14 @@ async function PorPedidoOrigem(parametros) {
 }
 
 async function PedidosAVencerSemRenovacoes(parametros) {
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+
   const aWhere = {
+    [Sequelize.Op.and]: [Sequelize.literal(wValidade)],
+
     [Sequelize.Op.and]: [
       Sequelize.literal("coalesce( PEDIDORENOVACAO,'' ) <> ''"),
     ],
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
     idparceiro:
       parametros.idParceiro > 0
         ? parametros.idParceiro
@@ -51,13 +49,11 @@ async function PedidosAVencerSemRenovacoes(parametros) {
 }
 
 async function PedidosAVencer(parametros) {
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+
   const aWhere = {
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
+    [Sequelize.Op.and]: [Sequelize.literal(wValidade)],
+
     status:
       parametros.status > 0 ? parametros.status : { [Sequelize.Op.ne]: 3 },
     idparceiro:
@@ -84,15 +80,13 @@ async function PedidosAVencer(parametros) {
 }
 
 async function AnaliseDeVendas(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+
   const aWhere = {
+    [Sequelize.Op.and]: [Sequelize.literal(wEmissao)],
+
     idgrupo:
       parametros.idGrupo > 0 ? parametros.idGrupo : { [Sequelize.Op.gte]: 0 },
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
   };
   const aOrder = [
     ["nomecertificado", "ASC"],
@@ -114,17 +108,14 @@ async function PedidosPorCliente(parametros) {
 }
 
 async function PorTipoDePagamento(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+
   const aWhere = {
     idtipopagamento:
       parametros.idTipoPagamento > 0
         ? parametros.idTipoPagamento
         : { [Sequelize.Op.gte]: 0 },
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
+    [Sequelize.Op.and]: [Sequelize.literal(wEmissao)],
   };
   const aOrder = [
     ["idtipopagamento", "ASC"],
@@ -135,6 +126,9 @@ async function PorTipoDePagamento(parametros) {
 }
 
 async function PedidosANotificar(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+
   let w = "";
 
   if (parametros.statusNotificacao && parametros.statusNotificacao >= 0) {
@@ -144,9 +138,12 @@ async function PedidosANotificar(parametros) {
       w = `TipoUltimoAviso=${parametros.statusNotificacao} and DataEnvioAviso is not null`;
     }
   }
-
   const aWhere = {
-    [Sequelize.Op.and]: [Sequelize.literal(w)],
+    [Sequelize.Op.and]: [
+      Sequelize.literal(w),
+      Sequelize.literal(wEmissao),
+      Sequelize.literal(wValidade),
+    ],
     status:
       parametros.status > 0
         ? parametros.status
@@ -156,20 +153,6 @@ async function PedidosANotificar(parametros) {
               { [Sequelize.Op.ne]: 3 },
             ],
           },
-
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
-
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
     idcliente:
       parametros.idCliente > 0
         ? parametros.idCliente
@@ -184,13 +167,10 @@ async function PedidosANotificar(parametros) {
 }
 
 async function PorStatus(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+
   const aWhere = {
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
+    [Sequelize.Op.and]: [Sequelize.literal(wEmissao)],
   };
   const aOrder = [
     ["emissao", "ASC"],
@@ -201,7 +181,15 @@ async function PorStatus(parametros) {
 }
 
 async function PorEmissaoValidade(parametros) {
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+
   const aWhere = {
+    [Sequelize.Op.and]: [
+      Sequelize.literal(wValidade),
+      Sequelize.literal(wEmissao),
+    ],
+
     oc: parametros.oc === "" ? { [Sequelize.Op.ne]: null } : parametros.oc,
     idcliente:
       parametros.idCliente > 0
@@ -227,18 +215,6 @@ async function PorEmissaoValidade(parametros) {
     liberadofaturamento: parametros.liberadoFaturamento
       ? true
       : { [Sequelize.Op.or]: [true, false] },
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
   };
 
   const aOrder = [
@@ -249,7 +225,17 @@ async function PorEmissaoValidade(parametros) {
 }
 
 async function PorDataRenovacao(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+  const wDataRenovacao = `cast( datarenovacao as date ) between '${parametros.renovacaoInicial}' and '${parametros.renovacaoFinal}'`;
+
   const aWhere = {
+    [Sequelize.Op.and]: [
+      Sequelize.literal(wValidade),
+      Sequelize.literal(wEmissao),
+      Sequelize.literal(wDataRenovacao),
+    ],
+
     datarevogacao: null,
     idcliente:
       parametros.idCliente > 0
@@ -260,24 +246,6 @@ async function PorDataRenovacao(parametros) {
     pedidoorigem: parametros.ignoraNumerosIguais
       ? { [Sequelize.Op.ne]: Sequelize.col("pedidorenovacao") }
       : { [Sequelize.Op.ne]: null },
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
-    datarenovacao: {
-      [Sequelize.Op.between]: [
-        parametros.renovacaoInicial,
-        parametros.renovacaoFinal,
-      ],
-    },
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
   };
 
   const aOrder = [
@@ -291,7 +259,9 @@ async function PorDataRenovacao(parametros) {
 }
 
 async function Gerencial(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
   const aWhere = {
+    [Sequelize.Op.and]: [Sequelize.literal(wEmissao)],
     idcliente:
       parametros.idCliente > 0
         ? parametros.idCliente
@@ -306,12 +276,6 @@ async function Gerencial(parametros) {
         : { [Sequelize.Op.gte]: 0 },
     idponto:
       parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
   };
 
   const aOrder = [["idorigem", "ASC"]];
@@ -319,16 +283,16 @@ async function Gerencial(parametros) {
 }
 
 async function PorPagamentoComissao(parametros) {
+  const wDataPgtoComissao = `cast( datapgtocomissao as date ) between '${parametros.dataInicial}' and '${parametros.dataFinal}'`;
   const aWhere = {
+    [Sequelize.Op.and]: [Sequelize.literal(wDataPgtoComissao)],
+
     idparceiro:
       parametros.idParceiro > 0
         ? parametros.idParceiro
         : { [Sequelize.Op.gte]: 0 },
     idponto:
       parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
-    datapgtocomissao: {
-      [Sequelize.Op.between]: [parametros.dataInicial, parametros.dataFinal],
-    },
   };
 
   const aOrder = [
@@ -339,7 +303,15 @@ async function PorPagamentoComissao(parametros) {
 }
 
 async function PorEmissao(parametros) {
+  const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
+  const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+
   const aWhere = {
+    [Sequelize.Op.and]: [
+      Sequelize.literal(wValidade),
+      Sequelize.literal(wEmissao),
+    ],
+
     idcliente:
       parametros.idCliente > 0
         ? parametros.idCliente
@@ -356,19 +328,6 @@ async function PorEmissao(parametros) {
         : { [Sequelize.Op.gte]: 0 },
     idponto:
       parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
-
-    emissao: {
-      [Sequelize.Op.between]: [
-        parametros.emissaoInicial,
-        parametros.emissaoFinal,
-      ],
-    },
-    validade: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial,
-        parametros.validadeFinal,
-      ],
-    },
   };
 
   const aOrder = [

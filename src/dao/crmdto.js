@@ -7,16 +7,17 @@ async function GetAll(where, order) {
 }
 
 async function PesquisaCrmDto(parametros) {
+  let wData = "";
+  let wValidade = "";
+  wValidade = `cast( pedidos_vencimento as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
+  wData += `cast( data  as date ) between '${parametros.dataInicial}' and '${parametros.dataFinal}'`;
+
   const aWhere = {
-    data: {
-      [Sequelize.Op.between]: [parametros.dataInicial, parametros.dataFinal],
-    },
-    pedidos_vencimento: {
-      [Sequelize.Op.between]: [
-        parametros.validadeInicial ?? "0001-01-01",
-        parametros.validadeFinal ?? "9999-01-01",
-      ],
-    },
+    [Sequelize.Op.and]: [
+      Sequelize.literal(wValidade),
+      Sequelize.literal(wData),
+    ],
+
     cliente_cnpjcpf: parametros.clienteCnpjCpf
       ? { [Sequelize.Op.like]: `%${parametros.clienteCnpjCpf}%` }
       : {
@@ -36,7 +37,7 @@ async function PesquisaCrmDto(parametros) {
         ? parametros.idCliente
         : { [Sequelize.Op.gte]: 0 },
   };
-  const aOrder = [["data", "ASC"]];
+  const aOrder = [["data", "DESC"]];
 
   return GetAll(aWhere, aOrder);
 }

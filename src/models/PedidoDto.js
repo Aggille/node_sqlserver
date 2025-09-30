@@ -7,14 +7,14 @@ class PedidoDto extends Model {
       {
         id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
 
-        datarenovacao: { type: DataTypes.DATE, allowNull: false },
-        emissao: { type: DataTypes.DATE, allowNull: false },
-        validade: { type: DataTypes.DATE, allowNull: false },
-        dataenvioaviso: { type: DataTypes.DATE, allowNull: false },
-        datapgtocomissao: { type: DataTypes.DATE, allowNull: false },
-        emissaonota: { type: DataTypes.DATE, allowNull: false },
-        datarevogacao: { type: DataTypes.DATE, allowNull: false },
-        dataoc: { type: DataTypes.DATE, allowNull: false },
+        datarenovacao: { type: DataTypes.DATEONLY, allowNull: false },
+        emissao: { type: DataTypes.DATEONLY, allowNull: false },
+        validade: { type: DataTypes.DATEONLY, allowNull: false },
+        dataenvioaviso: { type: DataTypes.DATEONLY, allowNull: false },
+        datapgtocomissao: { type: DataTypes.DATEONLY, allowNull: false },
+        emissaonota: { type: DataTypes.DATEONLY, allowNull: false },
+        datarevogacao: { type: DataTypes.DATEONLY, allowNull: false },
+        dataoc: { type: DataTypes.DATEONLY, allowNull: false },
 
         idtipoemissao: { type: DataTypes.INTEGER, allowNull: true },
         valorcertificado: { type: DataTypes.FLOAT, allowNull: true },

@@ -15,7 +15,7 @@ class Usuario extends Model {
         login: DataTypes.STRING,
         senha: DataTypes.STRING,
         nivel: DataTypes.INTEGER,
-        validade: DataTypes.DATE,
+        validade: DataTypes.DATEONLY,
         exibecertificadosinicio: DataTypes.BOOLEAN,
         agendatrancada: DataTypes.BOOLEAN,
         idponto: DataTypes.INTEGER,

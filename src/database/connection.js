@@ -2,15 +2,25 @@ const { Sequelize } = require("sequelize");
 require("dotenv").config();
 const sql = require("mssql");
 const logger = require("../logger");
+const { format } = require("date-fns");
+
 let connection = null;
 
 // Override timezone formatting
 Sequelize.DATE.prototype._stringify = function _stringify(date, options) {
-  date = this._applyTimezone(date, options);
+  //date = this._applyTimezone(date, options);
 
   // Z here means current timezone, _not_ UTC
   // return date.format('YYYY-MM-DD HH:mm:ss.SSS Z');
-  return date.format("YYYY-MM-DD HH:mm:ss.SSS");
+  return format(date, "yyyy-MM-dd");
+};
+
+Sequelize.DATEONLY.prototype._stringify = function _stringify(date, options) {
+  //date = this._applyTimezone(date, options);
+
+  // Z here means current timezone, _not_ UTC
+  // return date.format('YYYY-MM-DD HH:mm:ss.SSS Z');
+  return format(date, "yyyy-MM-dd");
 };
 
 const configDB = {
@@ -74,10 +84,13 @@ async function sequelizeConnection() {
       host: process.env.DB_SERVER,
       port: process.env.DB_PORT,
       dialect: process.env.DB_DIALECT,
-
+      // timezone: "-06:00",
+      // useUTC: false,
       dialectOptions: {
         options: {
-          encrypt: false,
+          useUTC: false,
+          // timezone: "-06:00",
+          // encrypt: false,
           trustServerCertificate: true,
           trustedConnection: true,
           enableArithAbort: true,

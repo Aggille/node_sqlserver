@@ -1,19 +1,25 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { Model } = require("sequelize");
 const { FormatarCnpjCpf } = require("../utils/masks");
-const { getStatusCrmById } = require("../dao/statusCrmDao");
-const { StatusCrmDto } = require("./StatusCrmDto");
+//const moment = require("moment");
+
 class CrmDto extends Model {
   static init(sequelize) {
     super.init(
       {
         id: { type: DataTypes.INTEGER, allowNull: true, primaryKey: true },
+        data: {
+          type: DataTypes.DATEONLY,
+          allowNull: false,
+        },
+        pedidovencimento: {
+          type: DataTypes.DATEONLY,
+          allowNull: false,
+          field: "pedidos_vencimento",
+        },
+
         statusnome: {
           type: DataTypes.VIRTUAL,
-          get() {
-            const status = getStatusCrmById(this.idstatus);
-            return status == null ? `${this.idstatus} Indefinido` : status.nome;
-          },
         },
         idcliente: {
           type: DataTypes.INTEGER,
@@ -34,12 +40,6 @@ class CrmDto extends Model {
           type: DataTypes.STRING,
           allowNull: true,
           primaryKey: false,
-        },
-        data: { type: DataTypes.DATE, allowNull: false },
-        pedidovencimento: {
-          type: DataTypes.DATE,
-          allowNull: false,
-          field: "pedidos_vencimento",
         },
         tipocontato: {
           type: DataTypes.INTEGER,
@@ -93,6 +93,8 @@ class CrmDto extends Model {
         // don't generate an "updatedAt" attribute
         updatedAt: false,
         sequelize,
+        timestamps: false,
+
         tableName: "CRMPROXY",
       }
     );

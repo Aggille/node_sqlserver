@@ -13,7 +13,7 @@ class Evento extends Model {
         },
         idpedido: { type: DataTypes.INTEGER, allowNull: true },
         protocolo: { type: DataTypes.STRING, allowNull: true },
-        dataevento: { type: DataTypes.DATE, allowNull: true },
+        dataevento: { type: DataTypes.DATEONLY, allowNull: true },
         horaevento: { type: DataTypes.STRING, allowNull: true },
         tipoevento: { type: DataTypes.STRING, allowNull: true },
         jsonevento: { type: DataTypes.STRING, allowNull: true },
