@@ -363,6 +363,12 @@ async function PorEmissao(parametros) {
         parametros.emissaoFinal,
       ],
     },
+    validade: {
+      [Sequelize.Op.between]: [
+        parametros.validadeInicial,
+        parametros.validadeFinal,
+      ],
+    },
   };
 
   const aOrder = [
