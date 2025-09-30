@@ -3,12 +3,13 @@ const routesOrigens = require("./origens");
 const routesUsers = require("./users");
 const routesPedidosDto = require("./pedidosDto");
 const routesPedidos = require("./pedidos");
+const routesNotificaEventos = require("./notificaeventos");
+const routesCrmDto = require("./crmDto");
 const routes = express.Router();
 const Auth = require("../controllers/authentication");
 const authSchema = require("../database/schemas/auth.schema.json");
 const schemaValidator = require("../middlewares/schemaValidator");
 const authentication = require("../middlewares/authentication");
-const routesNotificaEventos = require("./notificaeventos");
 
 routes.use(routesOrigens);
 
@@ -27,6 +28,7 @@ routes.use(authentication);
 
 routes.use(routesPedidos);
 routes.use(routesPedidosDto);
+routes.use(routesCrmDto);
 routes.use(routesUsers);
 routes.get("/health", (req, res) => {
   res.status(200).json({ status: "UP" });
