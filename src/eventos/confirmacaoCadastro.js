@@ -22,20 +22,18 @@ async function confirmacaoCadastro(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
-  if (pedido.id) {
-    const eventoModel = new Evento({
-      idpedido: pedido.id,
-      protocolo: protocolo,
-      dataevento: new Date(),
-      horaevento: new Date().toTimeString().substring(0, 8),
-      tipoevento: evento,
-      jsonevento: JSON.stringify(req.body),
-    });
+  const eventoModel = new Evento({
+    idpedido: pedido.id,
+    protocolo: protocolo,
+    dataevento: new Date(),
+    horaevento: new Date().toTimeString().substring(0, 8),
+    tipoevento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
 
-    // CRIAR UM CAMPO DATA DE CONFIRMACAÇÃO
-    // E ATUALIZAR NESSE EVENTO
-    await InsertEventoWithMessage(eventoModel, req, res);
-  }
+  // CRIAR UM CAMPO DATA DE CONFIRMACAÇÃO
+  // E ATUALIZAR NESSE EVENTO
+  await InsertEventoWithMessage(eventoModel, req, res);
 }
 module.exports = {
   confirmacaoCadastro,

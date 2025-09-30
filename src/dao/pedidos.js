@@ -1,6 +1,5 @@
 const PedidosModel = require("../models/Pedido");
 const logger = require("../logger");
-const dao = require("../dao/genericDao");
 
 async function PedidoByProtocolo(protocolo) {
   const pedido = await PedidosModel.findOne({
@@ -13,7 +12,7 @@ async function PedidoByProtocolo(protocolo) {
 async function PedidoByProtocoloWithMessage(protocolo, req, res) {
   const { evento } = req.body;
 
-  const pedido = await dao.FindOne(PedidosModel, {
+  const pedido = await PedidosModel.findOne({
     where: { pedidoorigem: protocolo },
   });
 
@@ -29,47 +28,17 @@ async function PedidoByProtocoloWithMessage(protocolo, req, res) {
 }
 
 async function PedidoById(id) {
-  return await dao.FindByPk(PedidosModel, id);
+  return await PedidosModel.findByPk(id);
 }
 
 async function UpdatePedido(pedido) {
-  try {
-    await dao.Update(pedido);
-    logger.info(`Pedido ${pedido.pedidoorigem} atualizado com sucesso`);
-  } catch (err) {
-    logger.error(
-      `Erro ao gravar pedido ${pedido.pedidoorigem}: ${err.message}`
-    );
-  }
-}
-
-async function InsertPedido(pedido) {
-  try {
-    await dao.Insert(pedido);
-    logger.info(`Pedido ${pedido.pedidoorigem} incluído com sucesso`);
-  } catch (err) {
-    logger.error(
-      `Erro ao incluir pedido ${pedido.pedidoorigem}: ${err.message}`
-    );
-  }
-}
-
-async function DeletePedido(pedido) {
-  try {
-    await dao.Delete(pedido);
-    logger.info(`Pedido ${pedido.pedidoorigem} excluído com sucesso`);
-  } catch (err) {
-    logger.error(
-      `Erro ao excluir pedido ${pedido.pedidoorigem}: ${err.message}`
-    );
-  }
+  await pedido.save();
+  //logger.info("Pedido atualizado com sucesso ", pedido.numeroserie, pedido.id);
 }
 
 module.exports = {
   PedidoByProtocolo,
   PedidoById,
-  InsertPedido,
   UpdatePedido,
-  DeletePedido,
   PedidoByProtocoloWithMessage,
 };
