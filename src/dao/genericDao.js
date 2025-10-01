@@ -24,6 +24,10 @@ class GenericDao {
   static async FindAll(model, where, order) {
     return await model.findAll({ where, order });
   }
+
+  static async FindAndCountAll(model, where, order) {
+    return await model.findAndCountAll({ where, order });
+  }
 }
 
 module.exports = GenericDao;

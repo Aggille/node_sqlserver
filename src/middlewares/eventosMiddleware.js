@@ -9,18 +9,27 @@ const { confirmacaoCadastro } = require("../eventos/confirmacaoCadastro");
 const { solicitacaoPeriodoUso } = require("../eventos/solicitacaoPeriodoUso");
 const { certificadoPeriodoUso } = require("../eventos/certificadoPeriodoUso");
 const { validacaoAutonoma } = require("../eventos/validacaoAutonoma");
+const { EventosByProtocoloTipoEvento } = require("../dao/eventos");
 const logger = require("../logger");
 const {
   cancelamentoSolicitacao,
 } = require("../eventos/cancelamentoSolicitacao");
 
 const eventosMiddleware = async (req, res) => {
-  const { evento } = req.body;
+  const { evento, protocolo } = req.body;
+  const { count } = await EventosByProtocoloTipoEvento(protocolo, evento);
+
   logger.info("Processando evento:" + evento);
 
   if (req.body.formaPagamento) {
     await pagamento(req, res);
     return;
+  }
+
+  if (count > 0) {
+    const msg = `Evento ${evento} para o protocolo ${protocolo} já registrado`;
+    logger.info(msg);
+    return res.status(200).json({ message: msg });
   }
 
   switch (evento) {

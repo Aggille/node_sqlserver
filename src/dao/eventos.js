@@ -1,8 +1,16 @@
 const EventosModel = require("../models/Evento");
 const logger = require("../logger");
+const dao = require("../dao/genericDao");
 
 async function EventoById(id) {
   return await EventosModel.findByPk(id);
+}
+
+async function EventosByProtocoloTipoEvento(protocolo, tipoevento) {
+  const aWhere = [{ protocolo: protocolo }, { tipoevento: tipoevento }];
+  const aOrder = [["protocolo", "ASC"]];
+  const eventos = await dao.FindAndCountAll(EventosModel, aWhere, aOrder);
+  return eventos;
 }
 
 async function UpdateEvento(evento) {
@@ -25,4 +33,5 @@ module.exports = {
   UpdateEvento,
   InsertEvento,
   InsertEventoWithMessage,
+  EventosByProtocoloTipoEvento,
 };

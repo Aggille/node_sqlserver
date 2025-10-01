@@ -184,11 +184,18 @@ async function PorEmissaoValidade(parametros) {
   const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
   const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
 
+  console.log(parametros);
+
   const aWhere = {
     [Sequelize.Op.and]: [
       Sequelize.literal(wValidade),
       Sequelize.literal(wEmissao),
     ],
+
+    liberadofaturamento:
+      parametros.liberadoFaturamento === "True"
+        ? { [Sequelize.Op.and]: [Sequelize.literal("liberadofaturamento=1")] }
+        : { [Sequelize.Op.and]: [Sequelize.literal("liberadofaturamento>=0")] },
 
     oc: parametros.oc === "" ? { [Sequelize.Op.ne]: null } : parametros.oc,
     idcliente:
@@ -211,10 +218,6 @@ async function PorEmissaoValidade(parametros) {
         : { [Sequelize.Op.gte]: 0 },
     idponto:
       parametros.idPonto > 0 ? parametros.idPonto : { [Sequelize.Op.gte]: 0 },
-
-    liberadofaturamento: parametros.liberadoFaturamento
-      ? true
-      : { [Sequelize.Op.or]: [true, false] },
   };
 
   const aOrder = [
