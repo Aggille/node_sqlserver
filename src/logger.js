@@ -8,7 +8,11 @@ const customFormat = printf(({ timestamp, level, message, stack }) => {
 
 const logger = winston.createLogger({
   level: "debug",
-  format: combine(timestamp(), errors({ stack: true }), customFormat),
+  format: combine(
+    timestamp({ format: "DD/MM/YYYY HH:mm:ss" }),
+    errors({ stack: true }),
+    customFormat
+  ),
   transports: [
     new winston.transports.Console(),
     new winston.transports.File({ filename: "logs/info.log", level: "info" }),
