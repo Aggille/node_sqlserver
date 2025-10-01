@@ -15,6 +15,9 @@ async function solicitacaoPeriodoUso(req, res) {
   } = req.body;
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
+  if (!pedido) {
+    return;
+  }
 
   const eventoModel = new Evento({
     idpedido: 0,

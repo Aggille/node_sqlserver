@@ -21,12 +21,16 @@ class GenericDao {
     return await model.findOne(where);
   }
 
-  static async FindAll(model, where, order) {
-    return await model.findAll({ where, order });
+  static async FindAll(model, where, order, attributes) {
+    return await model.findAll({ attributes: attributes, where, order });
   }
 
-  static async FindAndCountAll(model, where, order) {
-    return await model.findAndCountAll({ where, order });
+  static async FindAndCountAll(model, where, order, attributes) {
+    return await model.findAndCountAll({
+      attributes: attributes,
+      where,
+      order,
+    });
   }
 }
 

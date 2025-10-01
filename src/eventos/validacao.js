@@ -45,6 +45,10 @@ async function validacao(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   pedido.datavalidacao = dtHoraEvento;
   pedido.validacaoexterna = validacaoExterna;
 

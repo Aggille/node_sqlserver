@@ -8,7 +8,6 @@ const { InsertEventoWithMessage } = require("../dao/eventos");
 const logger = require("../logger");
 
 async function emissao(req, res) {
-  //logger.info("Processando evento de emissão:", req.body);
   const {
     protocolo,
     inicioValidade,
@@ -19,6 +18,10 @@ async function emissao(req, res) {
   } = req.body;
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
+
+  if (!pedido) {
+    return;
+  }
 
   const validade = fimValidade;
   const horaInicial = inicioValidade.substring(11, 19);

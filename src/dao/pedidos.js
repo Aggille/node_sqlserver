@@ -21,7 +21,8 @@ async function PedidoByProtocoloWithMessage(protocolo, req, res) {
       evento ?? "Evento Indefinodo"
     }: Pedido ${protocolo} não encontrado`;
     logger.error(msg);
-    return res.status(404).json({ message: msg });
+    res.status(404).json({ message: msg });
+    return null;
   } else {
     return pedido;
   }

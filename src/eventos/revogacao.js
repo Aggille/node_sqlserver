@@ -12,6 +12,10 @@ async function revogacao(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   const obs = `Revogação notificada em ${format(
     new Date(),
     "dd/MM/yyyy"

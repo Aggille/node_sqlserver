@@ -24,6 +24,9 @@ async function verificacao(req, res) {
   } = req.body;
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
+  if (!pedido) {
+    return;
+  }
 
   const obs = `Verificação notificada em ${format(
     new Date(),

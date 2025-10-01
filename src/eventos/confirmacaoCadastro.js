@@ -22,6 +22,10 @@ async function confirmacaoCadastro(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   const eventoModel = new Evento({
     idpedido: pedido.id,
     protocolo: protocolo,

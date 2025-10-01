@@ -184,8 +184,6 @@ async function PorEmissaoValidade(parametros) {
   const wValidade = `cast( validade as date ) between '${parametros.validadeInicial}' and '${parametros.validadeFinal}'`;
   const wEmissao = `cast( emissao as date ) between '${parametros.emissaoInicial}' and '${parametros.emissaoFinal}'`;
 
-  console.log(parametros);
-
   const aWhere = {
     [Sequelize.Op.and]: [
       Sequelize.literal(wValidade),

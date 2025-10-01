@@ -31,6 +31,10 @@ async function validacaoAutonoma(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   pedido.datavalidacao = dtHoraEvento;
   await UpdatePedido(pedido);
 

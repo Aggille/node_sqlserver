@@ -8,6 +8,10 @@ async function cancelamento(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   const horaEvento = dtHoraEvento.substring(11, 19);
 
   const eventoModel = new Evento({

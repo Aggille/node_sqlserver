@@ -61,6 +61,10 @@ async function solicitacao(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
+  if (!pedido) {
+    return;
+  }
+
   pedido.datasolicitacao = new Date();
   await UpdatePedido(pedido);
 
