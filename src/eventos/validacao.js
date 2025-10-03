@@ -46,68 +46,63 @@ async function validacao(req, res) {
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
   const dataevento = dtHoraEvento.substring(0, 10); // format(new Date(), "yyyy/MM/dd hh:mm:ss");
-  const msg = `DHEVENTO, ${dtHoraEvento} DATA CONVERTIDA ${dataevento}`;
-
-  pedido.datavalidacao = dataevento;
-  const horaEvento = dtHoraEvento.substring(11, 19);
-  const eventoModel = new Evento({
-    idpedido: pedido.id,
-    tipoevento: evento,
-    protocolo: protocolo,
-    dataevento: dataevento, // dtHoraEvento.substring(0, 10),
-    horaevento: horaEvento,
-    evento: evento,
-    jsonevento: JSON.stringify(req.body),
-  });
-
-  await InsertEventoWithMessage(eventoModel, req, res);
-
-  // res.status(200).json({
-  //   msg: msg,
-  //   evento: eventoModel,
-  // });
-
-  // if (!pedido) {
-  //   return;
-  // }
+  // const msg = `DHEVENTO, ${dtHoraEvento} DATA CONVERTIDA ${dataevento}`;
 
   // pedido.datavalidacao = dataevento;
-  // pedido.validacaoexterna = validacaoExterna;
-
-  // const usuario = await UsuarioByCpf(cpf);
-  // if (usuario) {
-  //   pedido.idagentevalidacao = usuario.id;
-  //   pedido.idagenteverificacao = usuario.id;
-  // }
-
-  // await UpdatePedido(pedido);
-
-  // const cliente = await ClienteById(pedido.idcliente);
-
-  // if (cliente) {
-  //   cliente.nome = nomeRazaoSocial;
-  //   cliente.identificacao_cnpjcpf = documento;
-  //   cliente.endereco_logradouro = logradouroTitular;
-  //   cliente.endereco_bairro = bairroTitular;
-  //   cliente.endereco_cep = cepTitular;
-  //   cliente.endereco_numero = numeroTitular;
-  //   cliente.contato_telefone = telefone;
-  //   cliente.contato_email = email;
-  //   await UpdateCliente(cliente);
-  // } else {
-  // }
   // const horaEvento = dtHoraEvento.substring(11, 19);
   // const eventoModel = new Evento({
   //   idpedido: pedido.id,
   //   tipoevento: evento,
   //   protocolo: protocolo,
-  //   dataevento: dtHoraEvento.substring(0, 10),
+  //   dataevento: dataevento, // dtHoraEvento.substring(0, 10),
   //   horaevento: horaEvento,
   //   evento: evento,
   //   jsonevento: JSON.stringify(req.body),
   // });
 
   // await InsertEventoWithMessage(eventoModel, req, res);
+
+  if (!pedido) {
+    return;
+  }
+
+  pedido.datavalidacao = dataevento;
+  pedido.validacaoexterna = validacaoExterna;
+
+  const usuario = await UsuarioByCpf(cpf);
+  if (usuario) {
+    pedido.idagentevalidacao = usuario.id;
+    pedido.idagenteverificacao = usuario.id;
+  }
+
+  await UpdatePedido(pedido);
+
+  const cliente = await ClienteById(pedido.idcliente);
+
+  if (cliente) {
+    cliente.nome = nomeRazaoSocial;
+    cliente.identificacao_cnpjcpf = documento;
+    cliente.endereco_logradouro = logradouroTitular;
+    cliente.endereco_bairro = bairroTitular;
+    cliente.endereco_cep = cepTitular;
+    cliente.endereco_numero = numeroTitular;
+    cliente.contato_telefone = telefone;
+    cliente.contato_email = email;
+    await UpdateCliente(cliente);
+  } else {
+  }
+  const horaEvento = dtHoraEvento.substring(11, 19);
+  const eventoModel = new Evento({
+    idpedido: pedido.id,
+    tipoevento: evento,
+    protocolo: protocolo,
+    dataevento: dtHoraEvento.substring(0, 10),
+    horaevento: horaEvento,
+    evento: evento,
+    jsonevento: JSON.stringify(req.body),
+  });
+
+  await InsertEventoWithMessage(eventoModel, req, res);
 }
 
 module.exports = {
