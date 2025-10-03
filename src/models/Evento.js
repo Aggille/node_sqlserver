@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { Model } = require("sequelize");
+const { format } = require("date-fns");
 
 class Evento extends Model {
   static init(sequelize) {
@@ -11,9 +12,9 @@ class Evento extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        idpedido: { type: DataTypes.INTEGER, allowNull: true },
+        idpedido: { type: DataTypes.STRING, allowNull: true },
         protocolo: { type: DataTypes.STRING, allowNull: true },
-        dataevento: { type: DataTypes.DATEONLY, allowNull: true },
+        dataevento: { type: DataTypes.STRING, allowNull: true },
         horaevento: { type: DataTypes.STRING, allowNull: true },
         tipoevento: { type: DataTypes.STRING, allowNull: true },
         jsonevento: { type: DataTypes.STRING, allowNull: true },

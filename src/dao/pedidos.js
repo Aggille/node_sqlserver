@@ -18,7 +18,7 @@ async function PedidoByProtocoloWithMessage(protocolo, req, res) {
 
   if (!pedido) {
     const msg = `${
-      evento ?? "Evento Indefinodo"
+      evento ?? "Evento Indefinido"
     }: Pedido ${protocolo} não encontrado`;
     logger.error(msg);
     res.status(404).json({ message: msg });
