@@ -45,31 +45,18 @@ async function validacao(req, res) {
   cpf = arr[1].trim();
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
-  const dataevento = dtHoraEvento.substring(0, 10); // format(new Date(), "yyyy/MM/dd hh:mm:ss");
-  // const msg = `DHEVENTO, ${dtHoraEvento} DATA CONVERTIDA ${dataevento}`;
-
-  // pedido.datavalidacao = dataevento;
-  // const horaEvento = dtHoraEvento.substring(11, 19);
-  // const eventoModel = new Evento({
-  //   idpedido: pedido.id,
-  //   tipoevento: evento,
-  //   protocolo: protocolo,
-  //   dataevento: dataevento, // dtHoraEvento.substring(0, 10),
-  //   horaevento: horaEvento,
-  //   evento: evento,
-  //   jsonevento: JSON.stringify(req.body),
-  // });
-
-  // await InsertEventoWithMessage(eventoModel, req, res);
+  const dataEvento = dtHoraEvento.substring(0, 10);
+  const horaEvento = dtHoraEvento.substring(11, 19);
 
   if (!pedido) {
     return;
   }
 
-  pedido.datavalidacao = dataevento;
+  pedido.datavalidacao = dataEvento;
   pedido.validacaoexterna = validacaoExterna;
 
   const usuario = await UsuarioByCpf(cpf);
+
   if (usuario) {
     pedido.idagentevalidacao = usuario.id;
     pedido.idagenteverificacao = usuario.id;
@@ -91,12 +78,12 @@ async function validacao(req, res) {
     await UpdateCliente(cliente);
   } else {
   }
-  const horaEvento = dtHoraEvento.substring(11, 19);
+
   const eventoModel = new Evento({
     idpedido: pedido.id,
     tipoevento: evento,
     protocolo: protocolo,
-    dataevento: dtHoraEvento.substring(0, 10),
+    dataevento: dataEvento,
     horaevento: horaEvento,
     evento: evento,
     jsonevento: JSON.stringify(req.body),

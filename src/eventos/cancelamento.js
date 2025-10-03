@@ -5,6 +5,8 @@ const logger = require("../logger");
 
 async function cancelamento(req, res) {
   const { protocolo, evento, dtHoraEvento } = req.body;
+  const dataevento = dtHoraEvento.substring(0, 10);
+  const horaEvento = dtHoraEvento.substring(11, 19);
 
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
@@ -12,13 +14,11 @@ async function cancelamento(req, res) {
     return;
   }
 
-  const horaEvento = dtHoraEvento.substring(11, 19);
-
   const eventoModel = new Evento({
     idpedido: pedido.id,
     tipoevento: evento,
     protocolo: protocolo,
-    dataevento: dtHoraEvento.substring(0, 10),
+    dataevento: dataevento,
     horaevento: horaEvento,
     evento: evento,
     jsonevento: JSON.stringify(req.body),

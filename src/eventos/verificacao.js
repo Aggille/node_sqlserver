@@ -23,6 +23,9 @@ async function verificacao(req, res) {
     apelidoPosto,
   } = req.body;
 
+  const dataEvento = dtHoraEvento.substring(0, 10);
+  const horaEvento = dtHoraEvento.substring(11, 19);
+
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
   if (!pedido) {
     return;
@@ -33,18 +36,16 @@ async function verificacao(req, res) {
     "dd/MM/yyyy"
   )} via API\n${pedido.observacoes ?? ""}`;
 
-  const dataVerificacao = dtHoraEvento;
-  pedido.dataverificacao = dataVerificacao;
+  pedido.dataverificacao = dataEvento;
   pedido.observacoes = obs;
   pedido.status = 1; // pendente
   await UpdatePedido(pedido);
 
-  const horaEvento = dtHoraEvento.substring(11, 19);
   const eventoModel = new Evento({
     idpedido: pedido.id,
     tipoevento: evento,
     protocolo: protocolo,
-    dataevento: dtHoraEvento.substring(0, 10),
+    dataevento: dataEvento,
     horaevento: horaEvento,
     tipoevento: evento,
     jsonevento: JSON.stringify(req.body),

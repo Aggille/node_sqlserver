@@ -17,15 +17,18 @@ async function emissao(req, res) {
     evento,
   } = req.body;
 
+  const dataEvento = dtHoraEvento.substring(0, 10);
+  const horaEvento = dtHoraEvento.substring(11, 19);
+  const horaInicial = inicioValidade.substring(11, 19);
+  const horaFinal = fimValidade.substring(11, 19);
+  const validade = fimValidade;
+
   const pedido = await PedidoByProtocoloWithMessage(protocolo, req, res);
 
   if (!pedido) {
     return;
   }
 
-  const validade = fimValidade;
-  const horaInicial = inicioValidade.substring(11, 19);
-  const horaFinal = fimValidade.substring(11, 19);
   const obs = `Emissão notificada em ${format(
     new Date(),
     "dd/MM/yyyy"
@@ -38,12 +41,11 @@ async function emissao(req, res) {
   pedido.status = 2;
   await UpdatePedido(pedido);
 
-  const horaEvento = dtHoraEvento.substring(11, 19);
   const eventoModel = new Evento({
     idpedido: pedido.id,
     tipoevento: evento,
     protocolo: protocolo,
-    dataevento: dtHoraEvento.substring(0, 10),
+    dataevento: dataEvento,
     horaevento: horaEvento,
     evento: evento,
     jsonevento: JSON.stringify(req.body),

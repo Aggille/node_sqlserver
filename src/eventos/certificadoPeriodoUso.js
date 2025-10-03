@@ -9,12 +9,14 @@ async function certificadoPeriodoUso(req, res) {
   if (!pedido) {
     return;
   }
+  const dataEvento = dtHoraEvento.substring(0, 10);
+  const horaEvento = dtHoraEvento.substring(11, 19);
 
   const eventoModel = new Evento({
     idpedido: 0,
     protocolo: protocolo,
-    dataevento: new Date(),
-    horaevento: new Date().toTimeString().substring(0, 8),
+    dataevento: dataEvento,
+    horaevento: horaEvento,
     tipoevento: evento,
     jsonevento: JSON.stringify(req.body),
   });
