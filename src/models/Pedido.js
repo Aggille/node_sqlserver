@@ -15,35 +15,44 @@ class Pedido extends Model {
         idponto: { type: DataTypes.INTEGER, allowNull: false },
         idcertificado: { type: DataTypes.INTEGER, allowNull: false },
         idmidia: { type: DataTypes.INTEGER, allowNull: false },
-        validade: { type: DataTypes.TIME, allowNull: false },
+        validade: { type: DataTypes.STRING, allowNull: false },
+        emissao: { type: DataTypes.STRING, allowNull: true },
+        datapgtocomissao: { type: DataTypes.STRING, allowNull: true },
+        dataenvioaviso: { type: DataTypes.STRING, allowNull: true },
+        dataoc: { type: DataTypes.STRING, allowNull: true },
+        dataliberacaofaturamento: { type: DataTypes.STRING, allowNull: true },
+        datarevisaoatendimento: { type: DataTypes.STRING, allowNull: true },
+        datarevogacao: { type: DataTypes.STRING, allowNull: true },
+        datarenovacao: { type: DataTypes.STRING, allowNull: true },
+        datasolicitacao: { type: DataTypes.STRING, allowNull: true },
+        dataverificacao: { type: DataTypes.STRING, allowNull: true },
+        datavalidacao: { type: DataTypes.STRING, allowNull: true },
+        datacancelamento: { type: DataTypes.STRING, allowNull: true },
+
         idorigem: { type: DataTypes.INTEGER, allowNull: false },
         valormidia: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
         valorcertificado: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
         valortotal: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
-        emissao: { type: DataTypes.DATEONLY, allowNull: true },
+
         pagacomissaoparceiro: { type: DataTypes.BOOLEAN, allowNull: false },
         pedidoorigem: { type: DataTypes.STRING(20), allowNull: false },
         pedidorenovacao: { type: DataTypes.STRING(20), allowNull: true },
         idparceiro: { type: DataTypes.INTEGER, allowNull: false },
-        dataenvioaviso: { type: DataTypes.DATEONLY, allowNull: true },
+
         idagentevalidacao: { type: DataTypes.INTEGER, allowNull: false },
         idagenteverificacao: { type: DataTypes.INTEGER, allowNull: false },
-        datapgtocomissao: { type: DataTypes.DATEONLY, allowNull: true },
+
         precocompra: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
         despesas: { type: DataTypes.DECIMAL(18, 2), allowNull: false },
         observacoes: { type: DataTypes.STRING(500), allowNull: true },
-        datarenovacao: { type: DataTypes.DATEONLY, allowNull: true },
+
         horainicialvalidade: { type: DataTypes.TIME, allowNull: true },
         horafinalvalidade: { type: DataTypes.TIME, allowNull: true },
         status: { type: DataTypes.INTEGER, allowNull: false },
         numeroseriea3responsavel: { type: DataTypes.STRING, allowNull: true },
-        datasolicitacao: { type: DataTypes.DATEONLY, allowNull: true },
-        dataverificacao: { type: DataTypes.DATEONLY, allowNull: true },
-        datavalidacao: { type: DataTypes.DATEONLY, allowNull: true },
-        datacancelamento: { type: DataTypes.DATEONLY, allowNull: true },
         formapagamento: { type: DataTypes.STRING, allowNull: true },
         statuspagamento: { type: DataTypes.STRING, allowNull: true },
-        datarevogacao: { type: DataTypes.DATEONLY, allowNull: true },
+
         numeroserie: { type: DataTypes.STRING, allowNull: true },
         idcertificadoar: { type: DataTypes.INTEGER, allowNull: true },
         nomeaci: { type: DataTypes.STRING, allowNull: true },
@@ -51,7 +60,7 @@ class Pedido extends Model {
         nomerevogado: { type: DataTypes.STRING, allowNull: true },
         validacaoexterna: { type: DataTypes.BOOLEAN, allowNull: true },
         enderecovalidacaoexterna: { type: DataTypes.STRING, allowNull: true },
-        datarevisaoatendimento: { type: DataTypes.DATEONLY, allowNull: true },
+
         idusuariorevisaoatendimento: {
           type: DataTypes.INTEGER,
           allowNull: true,
@@ -67,7 +76,7 @@ class Pedido extends Model {
         comissaopaga: { type: DataTypes.DECIMAL(18, 2), allowNull: true },
         codigorevogacao: { type: DataTypes.INTEGER, allowNull: true },
         descricaorevogacao: { type: DataTypes.STRING, allowNull: true },
-        dataliberacaofaturamento: { type: DataTypes.DATEONLY, allowNull: true },
+
         idusuarioliberacaofaturamento: {
           type: DataTypes.INTEGER,
           allowNull: true,
@@ -83,7 +92,7 @@ class Pedido extends Model {
         psbiolocal: { type: DataTypes.BOOLEAN, allowNull: true },
         psbioglobal: { type: DataTypes.BOOLEAN, allowNull: true },
         oc: { type: DataTypes.STRING, allowNull: true },
-        dataoc: { type: DataTypes.DATEONLY, allowNull: true },
+
         tipoultimoaviso: { type: DataTypes.INTEGER, allowNull: true },
       },
       {
